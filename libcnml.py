@@ -19,6 +19,7 @@
 
 try:
 	from lxml import etree
+	from lxml.etree import XMLSyntaxError
 	LXML = True
 	print 'Using lxml which is more efficient'
 except ImportError:
@@ -601,7 +602,8 @@ class CNMLParser():
 		self.links = None
 		
 		if not lazy:
-			self.load()
+			self.loaded = self.load()
+			# TODO: raise exception if load failed so that the user interface can show a messagebox
 		else:
 			self.loaded = False
 	
@@ -658,7 +660,13 @@ class CNMLParser():
 		return self.links.values()
 		
 	def loadLxml(self, validate=True):
-		tree = etree.parse(self.filename)
+		try:
+			tree = etree.parse(self.filename)
+		except XMLSyntaxError, e:
+			print 'Error reading CNML file:', e
+			print 'The file might be corrupted. Please remove it manually:'
+			print 'rm', self.filename
+			return False
 
 		if validate:
 			print 'Validating file "%s"...' %self.filename
@@ -741,6 +749,7 @@ class CNMLParser():
 		for link in self.getLinks():
 			link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
 			
+		return True
 		
 	def loadMinidom(self, validate=True):
 		tree = MD.parse(self.filename)
@@ -821,7 +830,9 @@ class CNMLParser():
 		# Note that if they belong to a different zone they might not be defined in the CNML file
 		for link in self.getLinks():
 			link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
-				
+		
+		# Fix: return False
+		return True
 		
 	def load(self, validate=True):
 		self.zones = dict()
@@ -833,13 +844,16 @@ class CNMLParser():
 		self.links = dict()
 		
 		if LXML:
-			self.loadLxml(validate)
+			loaded = self.loadLxml(validate)
 		else:
-			self.loadMinidom(validate)
+			loaded = self.loadMinidom(validate)
 
-		print 'Loaded "%s" successfully' %self.filename
-		self.loaded = True
+		if loaded:
+			print 'Loaded "%s" successfully' %self.filename
+		else:
+			print 'There were some errors loading "%s"' %self.filename
 
+		return loaded
 
 	def getNodesFromZone(self, zid):
 		if not self.loaded:
