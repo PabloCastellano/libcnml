@@ -28,7 +28,7 @@ except ImportError:
 	print 'lxml module not found. Falling back to minidom'
 	
 
-class CNMLZone:
+class CNMLZone(object):
 	def __init__(self, zid, parentid, aps=0, box=[], nclients=0, ndevices=0, nlinks=0, nservices=0, title=''):
 		self.id = zid
 		self.parentzone = parentid
@@ -125,7 +125,7 @@ class CNMLZone:
 			return CNMLZone.parseMinidom(z)
 		
 		
-class CNMLNode:
+class CNMLNode(object):
 	def __init__(self, nid, title, lat, lon, nlinks, status):
 		self.id = nid
 		self.title = title
@@ -189,7 +189,7 @@ class CNMLNode:
 			return CNMLNode.parseMinidom(n)
 
 
-class CNMLService:
+class CNMLService(object):
 	def __init__(self, sid, title, stype, status, created, parent):
 		self.id = sid
 		self.title = title
@@ -230,7 +230,7 @@ class CNMLService:
 			return CNMLService.parseMinidom(s, parent)
 
 
-class CNMLDevice:
+class CNMLDevice(object):
 	def __init__(self, did, name, firmware, status, title, dtype, parent):
 		self.id = did
 		self.name = name
@@ -295,7 +295,7 @@ class CNMLDevice:
 			return CNMLDevice.parseMinidom(d, parent)
 
 
-class CNMLRadio:
+class CNMLRadio(object):
 	def __init__(self, rid, protocol, snmp_name, ssid, mode, gain, angle, channel, clients, parent):
 		self.id = rid
 		self.protocol = protocol
@@ -364,7 +364,7 @@ class CNMLRadio:
 			return CNMLRadio.parseMinidom(r, parent)
 				
 		
-class CNMLInterface:
+class CNMLInterface(object):
 	def __init__(self, iid, ipv4, mask, mac, itype, parent):
 		self.id = iid
 		self.ipv4 = ipv4
@@ -419,7 +419,7 @@ class CNMLInterface:
 # Note that for two connected nodes there's just one link, that is,
 # two different links (different linked dev/if/node) but same id
 # Given a device link, how to difference which is the linked device, A or B?
-class CNMLLink:
+class CNMLLink(object):
 	def __init__(self, lid, status, ltype, ldid, liid, lnid, parent):
 		self.id = lid
 		self.status = status
@@ -541,7 +541,7 @@ class CNMLLink:
 		
 		
 
-class Status:
+class Status(object):
 	PLANNED = 1
 	WORKING = 2
 	TESTING = 3
@@ -588,7 +588,7 @@ class Status:
 			
 		return st
 			
-class CNMLParser():
+class CNMLParser(object):
 	def __init__(self, filename, lazy=False):
 		self.filename = filename
 		self.rootzone = 0
