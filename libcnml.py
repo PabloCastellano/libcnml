@@ -637,6 +637,18 @@ class CNMLParser(object):
 		print 'DTD validation is not implemented with Minidom API'
 		pass
 		
+
+	def findNodefromIPv4(self, ipv4):
+		for i in self.getInterfaces():
+			if i.ipv4 == ipv4:
+				radio = i.parentRadio
+				if isinstance(radio, CNMLRadio):
+					node = radio.parentDevice.parentNode
+				else:
+					# parent of radio is already a device
+					node = radio.parentNode
+				return node
+		return None
 		
 	def getNodes(self):
 		return self.nodes.values()
