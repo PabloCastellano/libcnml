@@ -18,6 +18,6 @@ __version__ = '1.0'
 __author__ = 'Pablo Castellano <pablo@anche.no>'
 __license__ = 'GPLv3+'
 
-__all__ = ['libcnml'] 
+__all__ = ['libcnml']
 
 from libcnml import CNMLParser, Status
