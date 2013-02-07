@@ -1,6 +1,9 @@
 libcnml is a CNML parser library for Python.
 
-It was developed by Pablo Castellano <pablo@anche.no> during
-Google Summer of Code 2012 inside of the Guifi.net Studio project 
+It is part of the Guifi.net Studio project developed by Pablo Castellano
+during Google Summer of Code 2012.
+
+You can find Guifi.net Studio at:
+https://gitorious.org/guifi-altres/guifinetstudio 
 
 The code license is GPLv3+
