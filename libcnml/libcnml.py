@@ -769,6 +769,7 @@ class CNMLParser(object):
                 for r in d.iterfind('radio'):
                     rid = int(r.get('id'))
                     newradio = CNMLRadio.parse(r, newdevice)
+                    self.radios[(did, rid)] = newradio
                     self.devices[did].addRadio(newradio)
 
                     # --interfaces--
@@ -851,6 +852,7 @@ class CNMLParser(object):
                 for r in d.getElementsByTagName("radio"):
                     rid = int(r.getAttribute('id'))
                     newradio = CNMLRadio.parse(r, newdevice)
+                    self.radios[(did, rid)] = newradio
                     self.devices[did].addRadio(newradio)
 
                     # --interfaces--
