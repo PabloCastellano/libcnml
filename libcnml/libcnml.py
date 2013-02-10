@@ -30,6 +30,14 @@ except ImportError:
 
 
 class CNMLZone(object):
+    """
+    This CNMLZone class represents an area in the world map
+
+    It's defined using two coordinate points: (left_bottom, right_top)
+    Zones can be nested, so a zone has its own unique id and its parent id
+    A zone has a title, which is the most useful for the end-users
+    CNML can also provide the total amount of clients, devices, links, services... in the area
+    """
     def __init__(self, zid, parentid, aps=0, box=[], nclients=0, ndevices=0, nlinks=0, nservices=0, title=''):
         self.id = zid
         self.parentzone = parentid
@@ -123,6 +131,15 @@ class CNMLZone(object):
 
 
 class CNMLNode(object):
+    """
+    This CNMLNode class represents a node in the network
+
+    Nodes are mainly wireless but there are a lot of different options, like fiber or ethernet cable
+    It's defined using one coordinate point
+    Each node has its own unique id
+    A node has a title and a status, which is the most useful for the end-users
+    CNML can also provide the total amount of links of this node
+    """
     def __init__(self, nid, title, lat, lon, nlinks, status):
         self.id = nid
         self.title = title
@@ -186,6 +203,14 @@ class CNMLNode(object):
 
 
 class CNMLService(object):
+    """
+    This CNMLService class represents a service in the network
+
+    Services are what make networks attractive to users
+    Each service has its own unique id and contains the reference to the node where it's running
+    A service has a title and a status, which is the most useful for the end-users
+    CNML can also provide the date when the service was created
+    """
     def __init__(self, sid, title, stype, status, created, parent):
         self.id = sid
         self.title = title
@@ -227,6 +252,9 @@ class CNMLService(object):
 
 
 class CNMLDevice(object):
+    """
+    This CNMLDevice class represents a device of a node in the network
+    """
     def __init__(self, did, name, firmware, status, title, dtype, parent):
         self.id = did
         self.name = name
@@ -291,6 +319,9 @@ class CNMLDevice(object):
 
 
 class CNMLRadio(object):
+    """
+    This CNMLRadio class represents a radio of a device in the network
+    """
     def __init__(self, rid, protocol, snmp_name, ssid, mode, gain, angle, channel, clients, parent):
         self.id = rid
         self.protocol = protocol
@@ -359,6 +390,9 @@ class CNMLRadio(object):
 
 
 class CNMLInterface(object):
+    """
+    This CNMLInterface class represents a interface associated to a radio of a device in the network
+    """
     def __init__(self, iid, ipv4, mask, mac, itype, parent):
         self.id = iid
         self.ipv4 = ipv4
@@ -411,7 +445,11 @@ class CNMLInterface(object):
 # Note that for two connected nodes there's just one link, that is,
 # two different links (different linked dev/if/node) but same id
 # Given a device link, how to difference which is the linked device, A or B?
+# FIXME
 class CNMLLink(object):
+    """
+    This CNMLLink class represents a link between two nodes in the network
+    """
     def __init__(self, lid, status, ltype, ldid, liid, lnid, parent):
         self.id = lid
         self.status = status
@@ -461,7 +499,7 @@ class CNMLLink(object):
         nidB = self.nodeB
 
         if self.nodeB is None:
-            #print "Couldn't find linked node (%d) in link %d. It may be defined in a different CNML zone." %(self.nodeA, self.id)
+            #print "Couldn't find linked node (%d) in link %d. It may be defined in a different CNML zone." % (self.nodeA, self.id)
             return
 
         if didA in devs:
@@ -533,6 +571,10 @@ class CNMLLink(object):
 
 
 class Status(object):
+    """
+    This Status class represents the many status a node can be
+    Note that only one of those is possible at a time
+    """
     PLANNED = 1
     WORKING = 2
     TESTING = 3
@@ -581,6 +623,9 @@ class Status(object):
 
 
 class CNMLParser(object):
+    """
+    This CNMLParser class is used to parse a CNML file and build the data structure
+    """
     def __init__(self, filename, lazy=False):
         self.filename = filename
         self.rootzone = 0
@@ -675,6 +720,7 @@ class CNMLParser(object):
         # --zones--
         zones = tree.iterfind('//zone')
 
+        # Save root zone id
         self.rootzone = int(tree.find('//zone[1]').get('id'))
 
         for z in zones:
