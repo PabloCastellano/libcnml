@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup
 
 VERSION = '0.7'
 
@@ -16,4 +16,5 @@ setup(
     data_files=[('', ['LICENSE.txt'])],
     include_package_data=True,
     zip_safe=False,
+    test_suite = "libcnml.tests.test_libcnml"
 )

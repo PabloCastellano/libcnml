@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<cnml version="0.1" server_id="1" server_url="http://guifi.net" generated="20130210 1048">
+    <class network_description="detail" mapping="y"/>
+    <network nodes="7" devices="15" ap="8" client="3" services="8" links="10">
+        <zone id="54284" parent_id="44278" title="Andoain" time_zone="+01 2 2" ntp_servers="10.69.12.26" dns_servers="10.69.12.26" graph_server="54624" created="20121206 0358" updated="20130117 1142" zone_nodes="7" box="-2.040548,43.207882,-1.997099,43.231393" access_points="8" clients="3" devices="15" services="8" links="10">
+            <node id="48441" title="ANDBerria38" lat="43.214780" lon="-2.020959" antenna_elevation="12" status="Planned" created="20120523 0647" updated="20130109 1201">&amp;nbsp;</node>
+            <node id="54285" title="ANDGkPlzUdala" lat="43.219423" lon="-2.019982" antenna_elevation="20" status="Building" created="20121206 0411" updated="20130130 0719" access_points="4" devices="6" links="4" services="4">
+                <device id="48303" title="AnUdalaRB750" type="radio" status="Building" created="20121210 0940" updated="20130130 0719" firmware="RouterOSv5.x">
+                    <radio id="0" device_id="48303" ssid="ANGkPlzUdalaRB750" mode="ap" protocol="802.11n" channel="5000" antenna_angle="120" antenna_gain="14" clients_accepted="No">
+                        <interface id="82381" type="wds/p2p" mac="D4:CA:6D:4D:88:0C" ipv4="172.23.0.49" mask="255.255.255.252">
+                            <link id="54405" linked_device_id="48312" linked_node_id="54396" linked_interface_id="82387" link_type="wds" link_status="Planned"/>
+                        </interface>
+                        <interface id="82382" type="wLan/Lan" mac="D4:CA:6D:4D:88:0C" ipv4="10.69.12.1" mask="255.255.255.240"/>
+                    </radio>
+                    <radio id="1" device_id="48303" ssid="AnGkPlzUdalaROCKET1" mode="ap" protocol="802.11n" channel="5500" antenna_angle="120" antenna_gain="16" clients_accepted="Yes">
+                        <interface id="82443" type="wLan" mac="00:27:22:9E:99:8F" ipv4="10.69.12.193" mask="255.255.255.224">
+                            <link id="54449" linked_device_id="48314" linked_node_id="54397" linked_interface_id="82496" link_type="ap/client" link_status="Planned"/>
+                        </interface>
+                    </radio>
+                    <radio id="2" device_id="48303" ssid="AnGkPlzUdalROCKET2" mode="ap" protocol="802.11n" channel="5560" antenna_angle="120" antenna_gain="16" clients_accepted="Yes">
+                        <interface id="82444" type="wLan" mac="DC:9F:DB:04:0C:C8" ipv4="10.69.12.225" mask="255.255.255.224">
+                            <link id="54406" linked_device_id="48345" linked_node_id="54427" linked_interface_id="82446" link_type="ap/client" link_status="Reserved"/>
+                        </interface>
+                    </radio>
+                    <radio id="3" device_id="48303" ssid="AnGkPlzUdalROCKET3" mode="ap" protocol="802.11n" channel="5320" antenna_angle="120" antenna_gain="16" clients_accepted="Yes">
+                        <interface id="82445" type="wLan" mac="DC:9F:DB:04:0C:F7" ipv4="10.69.14.1" mask="255.255.255.224">
+                            <link id="54407" linked_device_id="48347" linked_node_id="54428" linked_interface_id="82447" link_type="ap/client" link_status="Reserved"/>
+                        </interface>
+                    </radio>
+                    <interface id="82382" type="wLan/Lan" mac="D4:CA:6D:4D:88:0C" ipv4="10.69.12.1" mask="255.255.255.240">
+                        <link id="54362" linked_device_id="48304" linked_node_id="54285" linked_interface_id="82389" link_type="cable" link_status="Planned"/>
+                        <link id="54363" linked_device_id="48305" linked_node_id="54285" linked_interface_id="82390" link_type="cable" link_status="Planned"/>
+                        <link id="54364" linked_device_id="48307" linked_node_id="54285" linked_interface_id="82391" link_type="cable" link_status="Planned"/>
+                        <link id="54365" linked_device_id="48311" linked_node_id="54285" linked_interface_id="82392" link_type="cable" link_status="Planned"/>
+                    </interface>
+                    <interface id="82393" type="servers" mac="00:00:00:00:00:00" ipv4="10.69.12.17" mask="255.255.255.248">
+                        <link id="54408" linked_device_id="48349" linked_node_id="54285" linked_interface_id="82450" link_type="cable" link_status="Planned"/>
+                    </interface>
+                </device>
+                <device id="48304" title="AnUdalaROCKET1" type="radio" status="Building" created="20121210 0948" updated="20130130 0719" firmware="AirOsv52">
+                    <interface id="82389" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.3" mask="255.255.255.240">
+                        <link id="54362" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82382" link_type="cable" link_status="Planned"/>
+                    </interface>
+                </device>
+                <device id="48305" title="AnUdalaROCKET2" type="radio" status="Building" created="20121210 0949" updated="20130130 0719" firmware="AirOsv52">
+                    <interface id="82390" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.2" mask="255.255.255.240">
+                        <link id="54363" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82382" link_type="cable" link_status="Planned"/>
+                    </interface>
+                </device>
+                <device id="48307" title="AnUdalaROCKET3" type="radio" status="Building" created="20121210 0951" updated="20130130 0719" firmware="AirOsv52">
+                    <interface id="82391" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.4" mask="255.255.255.240">
+                        <link id="54364" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82382" link_type="cable" link_status="Planned"/>
+                    </interface>
+                </device>
+                <device id="48311" title="AnUdalaNB" type="radio" status="Building" created="20121210 1008" updated="20130130 0719" firmware="AirOsv52">
+                    <interface id="82392" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.5" mask="255.255.255.240">
+                        <link id="54365" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82382" link_type="cable" link_status="Planned"/>
+                    </interface>
+                </device>
+                <device id="48349" title="AnGkPlzUdalaSrvr1" type="server" status="Building" created="20121211 1032" updated="20130130 0719">Andoaingo grafika zerbitzaria&lt;br /&gt;<interface id="82450" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.18" mask="255.255.255.248">
+                        <link id="54408" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82393" link_type="cable" link_status="Planned"/>
+                    </interface>
+                    <service id="54621" title="AUdaDZ" type="DNS" status="Building" created="20121219 1038" updated="20130117 1140"/>
+                    <service id="54623" title="AUdaNZ" type="NTP" status="Planned" created="20121219 1039"/>
+                    <service id="54624" title="AUdaSZ" type="SNPgraphs" status="Building" created="20121219 1041" updated="20130117 1140"/>
+                    <service id="54625" title="AUdaPZ" type="Proxy" status="Building" created="20121219 1043" updated="20130117 1140"/>
+                </device>
+            </node>
+            <node id="54396" title="ANDItlzp" lat="43.226271" lon="-2.042599" antenna_elevation="10" status="Planned" created="20121210 1012" updated="20130115 0156" access_points="2" devices="2" links="1">Andoaini telebista seinalearen errepikatzailean joango den antena&lt;br /&gt;<device id="48344" title="AnTlzp-RB750" type="radio" status="Planned" created="20121211 1000" updated="20121211 1002" firmware="RouterOSv5.x" name="Routerboard 600">
+                    <radio id="0" device_id="48344" ssid="andoainnTlzpRB750AP0" mode="ap" protocol="802.11n" channel="5000" antenna_angle="120" antenna_gain="14" clients_accepted="No" snmp_name="wlan1">
+                        <interface id="82442" type="wLan/Lan" mac="99:88:77:66:55:44" ipv4="10.69.12.161" mask="255.255.255.224"/>
+                    </radio>
+                    <interface id="82442" type="wLan/Lan" mac="99:88:77:66:55:44" ipv4="10.69.12.161" mask="255.255.255.224"/>
+                </device>
+                <device id="48312" title="AnItlzpNB1" type="radio" status="Planned" created="20121210 1013" firmware="AirOsv52" name="AirMaxM5 Rocket/Nano/Loco">
+                    <radio id="0" device_id="48312" ssid="andoainntlzpNB1" mode="ap" protocol="802.11n" channel="5000" antenna_angle="6" antenna_gain="14" clients_accepted="No" snmp_name="ath0">
+                        <interface id="82387" type="wds/p2p" mac="DC:9F:DB:22:BD:36" ipv4="172.23.0.50" mask="255.255.255.252">
+                            <link id="54405" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82381" link_type="wds" link_status="Planned"/>
+                        </interface>
+                    </radio>
+                </device>
+            </node>
+            <node id="55354" title="ANDPlazaola10" lat="43.217480" lon="-2.019170" antenna_elevation="15" status="Building" graph_server="55388" created="20130115 0150" updated="20130117 0144" access_points="2" devices="4" links="2" services="4">&amp;nbsp;<device id="49480" title="ANDPlazaola10-NBR-U" type="radio" status="Building" graph_server="55388" created="20130116 1104" updated="20130117 0145" firmware="AirOsv52" name="AirMaxM5 Bullet/PwBrg/AirGrd/NanoBr">
+                    <interface id="84162" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.34" mask="255.255.255.240">
+                        <link id="55719" linked_device_id="49479" linked_node_id="55354" linked_interface_id="84158" link_type="cable" link_status="Building"/>
+                    </interface>
+                </device>
+                <device id="49479" title="ANDPlazaola10-RB493" type="radio" status="Building" graph_server="55388" created="20130116 1058" updated="20130117 0144" firmware="RouterOSv5.x" name="Routerboard 600">
+                    <radio id="0" device_id="49479" ssid="ANDPlazaola10-ADUNUdaletxea" mode="ap" protocol="802.11n" channel="5000" antenna_gain="25" clients_accepted="No" snmp_name="wlan1">
+                        <interface id="84158" type="wLan/Lan" mac="FA:BA:DA:FA:BA:DA" ipv4="10.69.12.33" mask="255.255.255.240"/>
+                        <interface id="84157" type="wds/p2p" mac="FA:BA:DA:FA:BA:DA" ipv4="172.23.0.137" mask="255.255.255.248">
+                            <link id="55729" linked_device_id="49491" linked_node_id="55112" linked_interface_id="84173" link_type="wds" link_status="Building"/>
+                        </interface>
+                    </radio>
+                    <radio id="1" device_id="49479" ssid="ANDPlazaola10-ALKIErrepikagail" mode="ap" protocol="802.11n" channel="5000" antenna_gain="25" clients_accepted="No" snmp_name="wlan2">
+                        <interface id="84163" type="wds/p2p" mac="FA:BA:DA:FA:BA:DA" ipv4="172.23.0.129" mask="255.255.255.248">
+                            <link id="55722" linked_device_id="49483" linked_node_id="55125" linked_interface_id="84167" link_type="wds" link_status="Building"/>
+                        </interface>
+                    </radio>
+                    <interface id="84158" type="wLan/Lan" mac="FA:BA:DA:FA:BA:DA" ipv4="10.69.12.33" mask="255.255.255.240">
+                        <link id="55718" linked_device_id="49481" linked_node_id="55354" linked_interface_id="84161" link_type="cable" link_status="Building"/>
+                        <link id="55719" linked_device_id="49480" linked_node_id="55354" linked_interface_id="84162" link_type="cable" link_status="Building"/>
+                    </interface>
+                    <interface id="84251" type="ether1" mac="00:00:00:00:00:00" ipv4="10.69.12.25" mask="255.255.255.248">
+                        <link id="55770" linked_device_id="49482" linked_node_id="55354" linked_interface_id="84253" link_type="cable" link_status="Building"/>
+                    </interface>
+                </device>
+                <device id="49481" title="ANDPlazaola10-NBR-E" type="radio" status="Building" graph_server="55388" created="20130116 1106" updated="20130117 0145" firmware="AirOsv52" name="AirMaxM5 Bullet/PwBrg/AirGrd/NanoBr">
+                    <interface id="84161" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.35" mask="255.255.255.240">
+                        <link id="55718" linked_device_id="49479" linked_node_id="55354" linked_interface_id="84158" link_type="cable" link_status="Building"/>
+                    </interface>
+                </device>
+                <device id="49482" title="ANDPlazaola10-Server" type="server" status="Building" created="20130116 1122" updated="20130117 0145">
+                    <interface id="84253" type="Lan" mac="00:00:00:00:00:00" ipv4="10.69.12.26" mask="255.255.255.248">
+                        <link id="55770" linked_device_id="49479" linked_node_id="55354" linked_interface_id="84251" link_type="cable" link_status="Building"/>
+                    </interface>
+                    <service id="55385" title="ANDPlazaola10-PROXY" type="Proxy" status="Building" created="20130116 1132" updated="20130116 0656"/>
+                    <service id="55386" title="ANDPlazaola10-DNS" type="DNS" status="Building" created="20130116 1147" updated="20130116 0656"/>
+                    <service id="55387" title="ANDPlazaola10-NTP" type="NTP" status="Building" created="20130116 1149" updated="20130116 0655"/>
+                    <service id="55388" title="ANDPlazaola10-GRAF" type="SNPgraphs" status="Building" created="20130116 1154" updated="20130116 0656"/>
+                </device>
+            </node>
+            <node id="54397" title="AnErr1" lat="43.218930" lon="-2.020283" antenna_elevation="10" status="Reserved" created="20121210 1033" updated="20121212 0855" clients="1" devices="1" links="1">Udalean egongo den supernodoarentzat IP&amp;nbsp;bat erreserbatzeko nodoa&lt;br /&gt;<device id="48314" title="AnErr1" type="radio" status="Reserved" created="20121210 1048" updated="20121211 1039" firmware="AirOsv52" name="AirMaxM5 Rocket/Nano/Loco">
+                    <radio id="0" device_id="48314" ssid="andoainnrr1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="14" clients_accepted="No" snmp_name="ath0">
+                        <interface id="82496" type="Wan" mac="FA:BA:DA:FA:BA:DA" ipv4="10.69.12.194" mask="255.255.255.224">
+                            <link id="54449" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82443" link_type="ap/client" link_status="Planned"/>
+                        </interface>
+                    </radio>
+                    <interface id="82496" type="Wan" mac="FA:BA:DA:FA:BA:DA" ipv4="10.69.12.194" mask="255.255.255.224"/>
+                </device>
+            </node>
+            <node id="54427" title="AnErr2" lat="43.219219" lon="-2.020036" antenna_elevation="1" status="Reserved" created="20121211 1020" updated="20121212 0853" clients="1" devices="1" links="1">andoaingo udaleko supernodoaren rocket 2 konfiguratzeko ip-a&lt;br /&gt;<device id="48345" title="AErr2Rd1" type="radio" status="Reserved" created="20121211 1024" updated="20121211 1024" firmware="AirOsv30" name="NanoStation2">
+                    <radio id="0" device_id="48345" ssid="andoainrr2Rd1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="14" clients_accepted="No" snmp_name="wifi0">
+                        <interface id="82446" type="Wan" mac="AA:11:AA:11:AA:11" ipv4="10.69.12.226" mask="255.255.255.224">
+                            <link id="54406" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82444" link_type="ap/client" link_status="Reserved"/>
+                        </interface>
+                    </radio>
+                    <interface id="82446" type="Wan" mac="AA:11:AA:11:AA:11" ipv4="10.69.12.226" mask="255.255.255.224"/>
+                </device>
+            </node>
+            <node id="54428" title="AnErr3" lat="43.219251" lon="-2.019961" status="Reserved" created="20121211 1026" updated="20121211 1038" clients="1" devices="1" links="1">Andoaingo udaleko supernodoaren rocket 3rako ipa&lt;br /&gt;<device id="48347" title="AnErr3Rd1" type="radio" status="Reserved" created="20121211 1028" updated="20121211 1038" firmware="AirOsv30" name="NanoStation2">
+                    <radio id="0" device_id="48347" ssid="andoainnrr3Rd1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="14" clients_accepted="No" snmp_name="wifi0">
+                        <interface id="82447" type="Wan" mac="AA:BB:CC:DD:EE:FF" ipv4="10.69.14.2" mask="255.255.255.224">
+                            <link id="54407" linked_device_id="48303" linked_node_id="54285" linked_interface_id="82445" link_type="ap/client" link_status="Reserved"/>
+                        </interface>
+                    </radio>
+                    <interface id="82447" type="Wan" mac="AA:BB:CC:DD:EE:FF" ipv4="10.69.14.2" mask="255.255.255.224"/>
+                </device>
+            </node>
+        </zone>
+    </network>
+</cnml>
