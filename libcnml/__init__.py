@@ -14,6 +14,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import absolute_import
 
 __version__ = '0.7'
 __author__ = 'Pablo Castellano <pablo@anche.no>'
@@ -21,4 +22,4 @@ __license__ = 'GPLv3+'
 
 __all__ = ['libcnml']
 
-from libcnml import CNMLParser, Status
+from .libcnml import CNMLParser, Status
