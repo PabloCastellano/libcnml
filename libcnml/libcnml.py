@@ -18,6 +18,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+import os
 try:
     from lxml import etree
     from lxml.etree import XMLSyntaxError
@@ -653,7 +654,7 @@ class CNMLParser(object):
             self.validateDTDMinidom(tree)
 
     def validateDTDLxml(self, tree):
-        dtdfile = 'tests/cnml.dtd'
+        dtdfile = os.path.join(os.path.dirname(__file__), 'cnml.dtd')
         try:
             with open(dtdfile, 'rb') as dtdfp:
                 dtd = etree.DTD(dtdfp)

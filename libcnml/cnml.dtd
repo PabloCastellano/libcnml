@@ -1,0 +1,126 @@
+<!--
+	DTD for CNML files version 0.1
+	Created by Pablo Castellano <pablo@anche.no> on August 2012
+-->
+
+<!ATTLIST cnml
+	version		CDATA	#REQUIRED
+	server_id	CDATA	#REQUIRED
+	server_url	CDATA	#REQUIRED
+	generated	CDATA	#REQUIRED
+>
+
+<!ATTLIST class
+	network_description	CDATA	#REQUIRED
+	mapping			CDATA	#REQUIRED
+>
+
+<!ATTLIST network
+	nodes		CDATA	#REQUIRED
+	devices		CDATA	#REQUIRED
+	ap		CDATA	#REQUIRED
+	client		CDATA	#REQUIRED
+	services	CDATA	#REQUIRED
+	links		CDATA	#REQUIRED
+>
+
+<!ATTLIST zone
+	dns_servers	CDATA	#IMPLIED
+	graph_server	CDATA	#IMPLIED
+	ntp_servers	CDATA	#IMPLIED
+	id		CDATA	#REQUIRED
+	title		CDATA	#REQUIRED
+	time_zone	CDATA	#IMPLIED
+	created		CDATA	#REQUIRED
+	updated		CDATA	#IMPLIED
+	zone_nodes	CDATA	#REQUIRED
+	box		CDATA	#REQUIRED
+	access_points	CDATA	#IMPLIED
+	clients		CDATA	#IMPLIED
+	devices		CDATA	#IMPLIED
+	services	CDATA	#IMPLIED
+	links		CDATA	#IMPLIED
+	parent_id	CDATA	#IMPLIED
+>
+
+<!ATTLIST node
+	access_points		CDATA	#IMPLIED
+	antenna_elevation	CDATA	#IMPLIED
+	clients			CDATA	#IMPLIED
+	created			CDATA	#REQUIRED
+	devices			CDATA	#IMPLIED
+	graph_server		CDATA	#IMPLIED
+	id			CDATA	#REQUIRED
+	lat			CDATA	#REQUIRED
+	links			CDATA	#IMPLIED
+	lon			CDATA	#REQUIRED
+	services		CDATA	#IMPLIED
+	status			CDATA	#REQUIRED
+	title			CDATA	#REQUIRED
+	updated			CDATA	#IMPLIED
+>
+
+<!ATTLIST device
+	created			CDATA	#REQUIRED
+	firmware		CDATA	#IMPLIED
+	graph_server		CDATA	#IMPLIED
+	id			CDATA	#REQUIRED
+	name			CDATA	#IMPLIED
+	snmp_index		CDATA	#IMPLIED
+	status			CDATA	#REQUIRED
+	title			CDATA	#REQUIRED
+	type			CDATA	#REQUIRED
+	updated			CDATA	#IMPLIED
+>
+
+<!ATTLIST service
+	created			CDATA	#REQUIRED
+	id			CDATA	#REQUIRED
+	status			CDATA	#REQUIRED
+	title			CDATA	#REQUIRED
+	type			CDATA	#REQUIRED
+	updated			CDATA	#IMPLIED
+>
+
+<!ATTLIST radio
+	antenna_angle		CDATA	#IMPLIED
+	antenna_gain		CDATA	#IMPLIED
+	antenna_azimuth		CDATA	#IMPLIED
+	channel			CDATA	#IMPLIED
+	clients_accepted	CDATA	#IMPLIED
+	device_id		CDATA	#REQUIRED
+	id			CDATA	#REQUIRED
+	mode			CDATA	#REQUIRED
+	protocol		CDATA	#IMPLIED
+	snmp_index		CDATA	#IMPLIED
+	snmp_name		CDATA	#IMPLIED
+	ssid			CDATA	#IMPLIED
+>
+
+<!ATTLIST interface
+	id	CDATA	#REQUIRED
+	ipv4	CDATA	#IMPLIED
+	mac	CDATA	#IMPLIED
+	mask	CDATA	#REQUIRED
+	type	CDATA	#IMPLIED
+>
+
+<!ATTLIST link
+	id			CDATA	#REQUIRED
+	link_status		CDATA	#REQUIRED
+	link_type		CDATA	#REQUIRED
+	linked_device_id	CDATA	#REQUIRED
+	linked_interface_id	CDATA	#REQUIRED
+	linked_node_id		CDATA	#REQUIRED
+>
+
+<!ELEMENT cnml (class, network)>
+<!ELEMENT class EMPTY>
+<!ELEMENT network (zone)?>
+<!ELEMENT zone (#PCDATA | zone | node)*>
+<!ELEMENT node (#PCDATA | device)*>
+<!ELEMENT device (#PCDATA | radio | interface | service)*>
+<!ELEMENT service EMPTY>
+<!ELEMENT radio (interface)*>
+<!ELEMENT interface (link)*>
+<!ELEMENT link EMPTY>

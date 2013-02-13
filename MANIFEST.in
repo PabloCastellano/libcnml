@@ -1,1 +1,2 @@
+include libcnml/cnml.dtd
 recursive-include libcnml/tests/data *cnml
