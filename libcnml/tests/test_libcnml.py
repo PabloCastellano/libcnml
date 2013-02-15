@@ -45,13 +45,27 @@ DATA = {
 }
 
 
+class ValidationTestCase(unittest.TestCase):
+    def test_valid(self):
+        filename = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            'data/54284.cnml'
+        )
+        parser = libcnml.CNMLParser(filename)
+        self.assertTrue(parser.loaded)
+
+    def test_invalid(self):
+        filename = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            'data/54284_invalid.cnml'
+        )
+        parser = libcnml.CNMLParser(filename)
+        self.assertFalse(parser.loaded)
+
+
 class LibcnmlTestCase(unittest.TestCase):
-    #cnml_file = 'data/54284.cnml'
-    #data = DATA[54284]
-    #cnml_file = 'data/55284.cnml'
-    #data = DATA[55284]
-    cnml_file = 'data/2525.cnml'
-    data = DATA[2525]
+    cnml_file = 'data/54284.cnml'
+    data = DATA[54284]
 
     def setUp(self):
         filename = os.path.join(
@@ -59,10 +73,6 @@ class LibcnmlTestCase(unittest.TestCase):
             self.cnml_file
         )
         self.parser = libcnml.CNMLParser(filename)
-
-    def test_validateDTD(self):
-        # TODO: validateDTD should return True of False
-        pass
 
     def test_findNodefromIPv4(self):
         node = self.parser.findNodefromIPv4(self.data['ip']['address'])

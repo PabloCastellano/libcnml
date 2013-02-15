@@ -653,11 +653,12 @@ class CNMLParser(object):
         logger.info('Validating file "%s"...' % self.filename)
 
         if LXML:
-            self.validateDTDLxml(tree)
+            return self.validateDTDLxml(tree)
         else:
-            self.validateDTDMinidom(tree)
+            return self.validateDTDMinidom(tree)
 
     def validateDTDLxml(self, tree):
+        validation = True
         dtdfile = os.path.join(os.path.dirname(__file__), 'cnml.dtd')
         try:
             with open(dtdfile, 'rb') as dtdfp:
@@ -668,13 +669,16 @@ class CNMLParser(object):
             if len(errors) > 0:
                 logger.warning('%d errors found:' % len(errors))
                 logger.warning(errors)
+                validation = False
 
         except IOError:
             logger.error('DTD Validation failed: %s file not found' % dtdfile)
+            validation = False
+        return validation
 
     def validateDTDMinidom(self, tree):
         logger.warn('DTD validation is not implemented with Minidom API')
-        pass
+        return False
 
     def findNodefromIPv4(self, ipv4):
         for i in self.getInterfaces():
@@ -720,7 +724,8 @@ class CNMLParser(object):
 
         if validate:
             logger.info('Validating file "%s"...' % self.filename)
-            self.validateDTDLxml(tree)
+            if not self.validateDTDLxml(tree):
+                return False
 
         # --zones--
         zones = tree.iterfind('//zone')
@@ -808,6 +813,7 @@ class CNMLParser(object):
 
         if validate:
             logger.info('Validating file "%s"...' % self.filename)
+            #Don't check for validation, as minidom doesn't support it
             self.validateDTDMinidom(tree)
 
         # --zones--
