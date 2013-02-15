@@ -18,16 +18,20 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
+from __future__ import absolute_import
 import os
+
+from libcnml import logger
+
 try:
     from lxml import etree
     from lxml.etree import XMLSyntaxError
     LXML = True
-    print('Using lxml which is more efficient')
+    logger.info('Using lxml which is more efficient')
 except ImportError:
     import xml.dom.minidom as MD
     LXML = False
-    print('lxml module not found. Falling back to minidom')
+    logger.info('lxml module not found. Falling back to minidom')
 
 
 class CNMLZone(object):
@@ -500,38 +504,38 @@ class CNMLLink(object):
         nidB = self.nodeB
 
         if self.nodeB is None:
-            #print("Couldn't find linked node (%d) in link %d. It may be defined in a different CNML zone." % (self.nodeA, self.id))
+            #logger.info("Couldn't find linked node (%d) in link %d. It may be defined in a different CNML zone." % (self.nodeA, self.id))
             return
 
         if didA in devs:
             self.deviceA = devs[didA]
         else:
-            print('Device id %d not found' % self.deviceA)
+            logger.warning('Device id %d not found' % self.deviceA)
 
         if didB in devs:
             self.deviceB = devs[didB]
         else:
-            print('Device id %d not found' % self.deviceB)
+            logger.warning('Device id %d not found' % self.deviceB)
 
         if iidA in ifaces:
             self.interfaceA = ifaces[iidA]
         else:
-            print('Interface id %d not found' % self.interfaceA)
+            logger.warning('Interface id %d not found' % self.interfaceA)
 
         if iidB in ifaces:
             self.interfaceB = ifaces[iidB]
         else:
-            print('Interface id %d not found' % self.interfaceB)
+            logger.warning('Interface id %d not found' % self.interfaceB)
 
         if nidA in nodes:
             self.nodeA = nodes[nidA]
         else:
-            print('Node id %d not found' % self.nodeA)
+            logger.warning('Node id %d not found' % self.nodeA)
 
         if nidB in nodes:
             self.nodeB = nodes[nidB]
         else:
-            print('Node id %d not found' % self.nodeB)
+            logger.warning('Node id %d not found' % self.nodeB)
 
     # Cambiar nombres:
     # link_status -> status
@@ -598,7 +602,7 @@ class Status(object):
         elif status.lower() == "dropped":
             st = Status.DROPPED
         else:
-            print('Value:', status)
+            logger.debug('Value: %s' % status)
             raise ValueError
 
         return st
@@ -646,7 +650,7 @@ class CNMLParser(object):
             self.loaded = False
 
     def validateDTD(self, tree):
-        print('Validating file "%s"...' % self.filename)
+        logger.info('Validating file "%s"...' % self.filename)
 
         if LXML:
             self.validateDTDLxml(tree)
@@ -659,17 +663,17 @@ class CNMLParser(object):
             with open(dtdfile, 'rb') as dtdfp:
                 dtd = etree.DTD(dtdfp)
 
-            print('DTD validation:', dtd.validate(tree))
+            logger.info('DTD validation: %s' % dtd.validate(tree))
             errors = dtd.error_log.filter_from_errors()
             if len(errors) > 0:
-                print('%d errors found:' % len(errors))
-                print(errors)
+                logger.warning('%d errors found:' % len(errors))
+                logger.warning(errors)
 
         except IOError:
-            print('DTD Validation failed: %s file not found' % dtdfile)
+            logger.error('DTD Validation failed: %s file not found' % dtdfile)
 
     def validateDTDMinidom(self, tree):
-        print('DTD validation is not implemented with Minidom API')
+        logger.warn('DTD validation is not implemented with Minidom API')
         pass
 
     def findNodefromIPv4(self, ipv4):
@@ -708,14 +712,14 @@ class CNMLParser(object):
     def loadLxml(self, validate=True):
         try:
             tree = etree.parse(self.filename)
-        except XMLSyntaxError, e:
-            print('Error reading CNML file:', e)
-            print('The file might be corrupted. Please remove it manually:')
-            print('rm', self.filename)
+        except XMLSyntaxError as e:
+            logger.error('Error reading CNML file:', e)
+            logger.error('The file might be corrupted. Please remove it manually:')
+            logger.error('rm %s' % self.filename)
             return False
 
         if validate:
-            print('Validating file "%s"...' % self.filename)
+            logger.info('Validating file "%s"...' % self.filename)
             self.validateDTDLxml(tree)
 
         # --zones--
@@ -803,7 +807,7 @@ class CNMLParser(object):
         tree = MD.parse(self.filename)
 
         if validate:
-            print('Validating file "%s"...' % self.filename)
+            logger.info('Validating file "%s"...' % self.filename)
             self.validateDTDMinidom(tree)
 
         # --zones--
@@ -898,9 +902,9 @@ class CNMLParser(object):
             loaded = self.loadMinidom(validate)
 
         if loaded:
-            print('Loaded "%s" successfully' % self.filename)
+            logger.info('Loaded "%s" successfully' % self.filename)
         else:
-            print('There were some errors loading "%s"' % self.filename)
+            logger.error('There were some errors loading "%s"' % self.filename)
 
         return loaded
 

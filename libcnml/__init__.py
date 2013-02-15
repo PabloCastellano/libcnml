@@ -22,4 +22,14 @@ __license__ = 'GPLv3+'
 
 __all__ = ['libcnml']
 
+import logging
+logger = logging.getLogger(__name__)
+# To change the logging level of libcnml use this code in your program:
+#  import libcnml
+#  import logging
+#  libcnml.logger.setLevel(loggin.INFO)
+logger.setLevel(logging.ERROR)
+ch = logging.StreamHandler()
+logger.addHandler(ch)
+
 from .libcnml import CNMLParser, Status
