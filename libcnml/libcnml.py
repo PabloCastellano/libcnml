@@ -768,6 +768,18 @@ class CNMLParser(object):
                     self.ifaces[iid] = newiface
                     self.devices[did].addInterface(newiface)
 
+                    # --links--
+                    for l in i.iterfind('link'):
+                        lid = int(l.get('id'))
+
+                        if lid in self.links:
+                            self.links[lid].parseLinkB(l)
+                            self.ifaces[iid].addLink(self.links[lid])
+                        else:
+                            newlink = CNMLLink.parse(l, newiface)
+                            self.links[lid] = newlink
+                            self.ifaces[iid].addLink(newlink)
+
                 # --services--
                 for s in d.iterfind('service'):
                     sid = int(s.get('id'))
@@ -851,6 +863,23 @@ class CNMLParser(object):
                 # --interfaces--
                 # TODO: If there's a working service in this device, it has interfaces (and it's not a son of a radio!)
                 # Look at the lxml parsing
+                for i in d.getElementsByTagName("interface"):
+                    iid = int(i.getAttribute('id'))
+                    newiface = CNMLInterface.parse(i, newdevice)
+                    self.ifaces[iid] = newiface
+                    self.devices[did].addInterface(newiface)
+
+                    # --links--
+                    for l in i.getElementsByTagName("link"):
+                        lid = int(l.getAttribute('id'))
+
+                        if lid in self.links:
+                            self.links[lid].parseLinkB(l)
+                            self.ifaces[iid].addLink(self.links[lid])
+                        else:
+                            newlink = CNMLLink.parse(l, newiface)
+                            self.links[lid] = newlink
+                            self.ifaces[iid].addLink(newlink)
 
                 # --services--
                 for s in d.getElementsByTagName('service'):
