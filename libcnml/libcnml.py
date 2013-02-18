@@ -717,7 +717,7 @@ class CNMLParser(object):
         try:
             tree = etree.parse(self.filename)
         except XMLSyntaxError as e:
-            logger.error('Error reading CNML file:', e)
+            logger.error('Error reading CNML file: %s' % e)
             logger.error('The file might be corrupted. Please remove it manually:')
             logger.error('rm %s' % self.filename)
             return False
