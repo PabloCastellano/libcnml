@@ -45,6 +45,16 @@ DATA = {
 }
 
 
+class EmptyFileTestCase(unittest.TestCase):
+    def test_invalid(self):
+        filename = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            'data/empty.cnml'
+        )
+        parser = libcnml.CNMLParser(filename)
+        self.assertFalse(parser.loaded)
+
+
 class ValidationTestCase(unittest.TestCase):
     def test_valid(self):
         filename = os.path.join(
