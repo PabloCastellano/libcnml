@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 # To change the logging level of libcnml use this code in your program:
 #  import libcnml
 #  import logging
-#  libcnml.logger.setLevel(loggin.INFO)
+#  libcnml.logger.setLevel(logging.INFO)
 logger.setLevel(logging.ERROR)
 ch = logging.StreamHandler()
 logger.addHandler(ch)
