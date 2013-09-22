@@ -588,6 +588,10 @@ class Status(object):
     DROPPED = 6
 
     @staticmethod
+    def get_status_list():
+        return (Status.PLANNED, Status.WORKING, Status.TESTING, Status.BUILDING, Status.RESERVED, Status.DROPPED)
+
+    @staticmethod
     def strToStatus(status):
         if status.lower() == "planned":
             st = Status.PLANNED
