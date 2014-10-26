@@ -586,10 +586,11 @@ class Status(object):
     BUILDING = 4
     RESERVED = 5
     DROPPED = 6
+    INACTIVE = 7
 
     @staticmethod
     def get_status_list():
-        return (Status.PLANNED, Status.WORKING, Status.TESTING, Status.BUILDING, Status.RESERVED, Status.DROPPED)
+        return (Status.PLANNED, Status.WORKING, Status.TESTING, Status.BUILDING, Status.RESERVED, Status.DROPPED, Status.INACTIVE)
 
     @staticmethod
     def strToStatus(status):
@@ -605,8 +606,10 @@ class Status(object):
             st = Status.RESERVED
         elif status.lower() == "dropped":
             st = Status.DROPPED
+        elif status.lower() == "inactive":
+            st = Status.INACTIVE
         else:
-            logger.debug('Value: %s' % status)
+            logger.debug('Value: %s (%d)' % (status, len(status)))
             raise ValueError
 
         return st
@@ -625,6 +628,8 @@ class Status(object):
             st = 'Reserved'
         elif status == Status.DROPPED:
             st = 'Dropped'
+        elif status == Status.INACTIVE:
+            st = 'Inactive'
         else:
             raise ValueError
 
