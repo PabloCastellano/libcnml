@@ -1,4 +1,4 @@
-24 Aug 2012:
+26 Oct 2014:
 - Release 0.8
 - Support new "inactive" status
 - Added new Status.get_status_list() static method
