@@ -14,3 +14,5 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
   - python ./libcnml/tests/test_libcnml.py
+  - pip install lxml
+  - python ./libcnml/tests/test_libcnml.py
