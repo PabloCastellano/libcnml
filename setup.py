@@ -7,6 +7,15 @@ sys.path.insert(0, 'libcnml')
 from version import __version__, __license__
 sys.path.remove('libcnml')
 
+if sys.argv[-1] == 'publish':
+    import os
+    os.system("python setup.py sdist bdist_wheel upload -s")
+    args = {'version': __version__}
+    print("You probably want to also tag the version now:")
+    print("  git tag -a %(version)s -m 'version %(version)s'" % args)
+    print("  git push --tags")
+    sys.exit()
+
 setup(
     name='libcnml',
     packages=['libcnml'],
