@@ -1,7 +1,12 @@
 Changelog
 =========
 
-Version 0.9 [unreleased]
+Version 1.0 [unreleased]
+------------------------
+
+- TODO
+
+Version 0.9 [2015-05-08]
 ------------------------
 
 - Fixed minidom errors
