@@ -4,7 +4,8 @@ Changelog
 Version 0.9 [unreleased]
 ------------------------
 
-- TBD
+- Fixed minidom errors
+- `#1 <https://github.com/PabloCastellano/libcnml/pull/1>`_: Added possibility to load CNML from URL in ``CNMLParser``
 
 Version 0.8 [2014-10-26]
 ------------------------
