@@ -16,10 +16,6 @@
 
 from __future__ import absolute_import
 
-__version__ = '0.7'
-__author__ = 'Pablo Castellano <pablo@anche.no>'
-__license__ = 'GPLv3+'
-
 __all__ = ['libcnml']
 
 import logging
@@ -33,3 +29,4 @@ ch = logging.StreamHandler()
 logger.addHandler(ch)
 
 from .libcnml import CNMLParser, Status
+from .version import __version__, __license__, __author__

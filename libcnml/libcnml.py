@@ -20,8 +20,16 @@
 
 from __future__ import absolute_import
 import os
+import six
 
 from libcnml import logger
+
+try:
+    # python 3
+    from urllib import request
+except ImportError:
+    # python 2
+    import urllib as request
 
 try:
     from lxml import etree
@@ -734,7 +742,10 @@ class CNMLParser(object):
 
     def loadLxml(self, validate=True):
         try:
-            tree = etree.parse(self.filename)
+            if not self.url_contents:
+                tree = etree.parse(self.filename)
+            else:
+                tree = etree.fromstring(self.url_contents)
         except XMLSyntaxError as e:
             logger.error('Error reading CNML file: %s' % e)
             logger.error('The file might be corrupted. Please remove it manually:')
@@ -747,10 +758,10 @@ class CNMLParser(object):
                 return False
 
         # --zones--
-        zones = tree.iterfind('//zone')
+        zones = tree.iterfind('.//zone')
 
         # Save root zone id
-        self.rootzone = int(tree.find('//zone[1]').get('id'))
+        self.rootzone = int(tree.find('.//zone[1]').get('id'))
 
         for z in zones:
             zid = int(z.get('id'))
@@ -762,7 +773,7 @@ class CNMLParser(object):
                 self.zones[zparentid].addSubzone(newzone)
 
         # --nodes--
-        for n in tree.iterfind('//node'):
+        for n in tree.iterfind('.//node'):
             nid = int(n.get('id'))
             zid = int(n.getparent().get('id'))
             newnode = CNMLNode.parse(n)
@@ -840,7 +851,10 @@ class CNMLParser(object):
         return True
 
     def loadMinidom(self, validate=True):
-        tree = MD.parse(self.filename)
+        if not self.url_contents:
+            tree = MD.parse(self.filename)
+        else:
+            tree = MD.parseString(self.url_contents)
 
         if validate:
             logger.info('Validating file "%s"...' % self.filename)
@@ -949,6 +963,11 @@ class CNMLParser(object):
         self.radios = dict()
         self.ifaces = dict()
         self.links = dict()
+        self.url_contents = None
+
+        # if URL has been passed, get the contents
+        if isinstance(self.filename, six.string_types) and self.filename.startswith('http'):
+            self.url_contents = request.urlopen(self.filename).read().decode()
 
         if LXML:
             loaded = self.loadLxml(validate)
