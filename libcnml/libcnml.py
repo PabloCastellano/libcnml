@@ -151,6 +151,9 @@ class CNMLNode(object):
         self.latitude = lat
         self.longitude = lon
         self.totalLinks = nlinks
+        # self.elevation = antenna_elevation
+        # self.created = created
+        # self.updated = updated
         self.status = status
         self.devices = dict()
         self.services = dict()
@@ -179,6 +182,10 @@ class CNMLNode(object):
         nlinks = int(nlinks)
         status = n.getAttribute('status')
         status = Status.strToStatus(status)
+        elevation = n.getAttribute('antenna_elevation') or 0
+        elevation = int(elevation)
+        #created = n.getAttribute('created')  # parse date chunga
+        #updated = n.getAttribute('updated')  # parse date chunga
 
         newnode = CNMLNode(nid, title, lat, lon, nlinks, status)
         return newnode
@@ -270,6 +277,7 @@ class CNMLDevice(object):
         self.radios = dict()
         self.interfaces = dict()
         self.parentNode = parent
+        # self.ssid = ssid
 
     def getRadios(self):
         return self.radios.values()
@@ -292,6 +300,7 @@ class CNMLDevice(object):
         status = Status.strToStatus(status)
         title = d.get('title')
         dtype = d.get('type')
+        # ssid = d.get('ssid')
         #nlinks = d.getAttribute('links') or 0
         #nlinks = int(nlinks)
         #por qué no tiene un atributo radios="2" en lugar de links="2"??
@@ -308,6 +317,7 @@ class CNMLDevice(object):
         status = Status.strToStatus(status)
         title = d.getAttribute("title")
         dtype = d.getAttribute("type")
+        # ssid = d.getAttribute('ssid')
         #nlinks = d.getAttribute('links') or 0
         #nlinks = int(nlinks)
         #por qué no tiene un atributo radios="2" en lugar de links="2"??
