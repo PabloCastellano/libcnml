@@ -943,7 +943,10 @@ class CNMLParser(object):
         if LXML:
             loaded = self.loadLxml(validate)
         else:
-            loaded = self.loadMinidom(validate)
+            try:
+                loaded = self.loadMinidom(validate)
+            except:
+                loaded = False
 
         if loaded:
             logger.info('Loaded "%s" successfully' % self.filename)
