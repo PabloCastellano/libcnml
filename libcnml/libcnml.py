@@ -967,7 +967,10 @@ class CNMLParser(object):
 
         # if URL has been passed, get the contents
         if isinstance(self.filename, six.string_types) and self.filename.startswith('http'):
-            self.url_contents = request.urlopen(self.filename).read().decode()
+            self.url_contents = request.urlopen(self.filename).read()
+            # decode response if needed
+            if not isinstance(self.url_contents, six.string_types):
+                self.url_contents = self.url_contents.decode()
 
         if LXML:
             loaded = self.loadLxml(validate)
