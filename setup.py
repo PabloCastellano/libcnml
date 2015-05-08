@@ -19,5 +19,6 @@ setup(
     data_files=[('', ['LICENSE.txt'])],
     include_package_data=True,
     zip_safe=False,
+    install_requires=['six'],
     test_suite = "libcnml.tests.test_libcnml"
 )

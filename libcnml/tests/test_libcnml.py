@@ -143,6 +143,19 @@ class LibcnmlTestCase(unittest.TestCase):
         self.assertEqual(len(links), len(self.data['links']))
 
 
+class LibcnmlUrlTestCase(LibcnmlTestCase):
+    """
+    Same as LibcnmlTestCase but get CNML from URL
+    instead of from local file
+    """
+    cnml_url = 'https://raw.githubusercontent.com/PabloCastellano/libcnml/master/libcnml/tests/data/54284.cnml'
+
+    def setUp(self):
+        self.parser = libcnml.CNMLParser(self.cnml_url)
+        if not self.parser.loaded:
+            raise ValueError('could not load CNMLParser')
+
+
 class Zone55284TestCase(LibcnmlTestCase):
     cnml_file = 'data/55284.cnml'
     data = DATA[55284]
