@@ -19,6 +19,10 @@ or you can get it from PYPI by using pip:
 
     pip install libcnml
 
+Optionally you can also install lxml (read the note below):
+
+    pip install lxml
+
 lxml
 ====
 
