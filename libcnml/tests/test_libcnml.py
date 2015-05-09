@@ -181,6 +181,11 @@ class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
         self.assertIsInstance(node.created, datetime.datetime)
         self.assertEqual(node.created.strftime('%Y-%m-%d %H:%M'), '2012-05-23 06:47')
 
+    def test_node_updated(self):
+        node = self.parser.getNode(48441)
+        self.assertIsInstance(node.updated, datetime.datetime)
+        self.assertEqual(node.updated.strftime('%Y-%m-%d %H:%M'), '2013-01-09 12:01')
+
 
 class Zone55284TestCase(LibcnmlTestCase):
     cnml_file = 'data/55284.cnml'
