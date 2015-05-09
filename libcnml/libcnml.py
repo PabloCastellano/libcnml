@@ -21,6 +21,7 @@
 from __future__ import absolute_import
 import os
 import six
+import datetime
 
 from libcnml import logger
 
@@ -153,15 +154,19 @@ class CNMLNode(object):
     A node has a title and a status, which is the most useful for the end-users
     CNML can also provide the total amount of links of this node
     """
-    def __init__(self, nid, title, lat, lon, nlinks, status):
+    def __init__(self, nid, title, lat, lon, nlinks, status,
+                 elevation, created, updated):
         self.id = nid
         self.title = title
         self.latitude = lat
         self.longitude = lon
         self.totalLinks = nlinks
-        # self.elevation = antenna_elevation
-        # self.created = created
-        # self.updated = updated
+        self.antenna_elevation = elevation
+        self.created = datetime.datetime.strptime(created, '%Y%m%d %H%M')
+        if updated:
+            self.updated = datetime.datetime.strptime(updated, '%Y%m%d %H%M')
+        else:
+            self.updated = None
         self.status = status
         self.devices = dict()
         self.services = dict()
@@ -192,10 +197,11 @@ class CNMLNode(object):
         status = Status.strToStatus(status)
         elevation = n.getAttribute('antenna_elevation') or 0
         elevation = int(elevation)
-        #created = n.getAttribute('created')  # parse date chunga
-        #updated = n.getAttribute('updated')  # parse date chunga
+        created = n.getAttribute('created')  # parse date chunga
+        updated = n.getAttribute('updated')  # parse date chunga
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status,
+                           elevation, created, updated)
         return newnode
 
     @staticmethod
@@ -210,8 +216,13 @@ class CNMLNode(object):
         nlinks = int(nlinks)
         status = n.get('status')
         status = Status.strToStatus(status)
+        elevation = n.get('antenna_elevation') or 0
+        elevation = int(elevation)
+        created = n.get('created')
+        updated = n.get('updated')
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status,
+                           elevation, created, updated)
         return newnode
 
     @staticmethod

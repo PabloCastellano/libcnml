@@ -1,6 +1,8 @@
 import os
 import unittest
 import libcnml
+import datetime
+
 
 DATA = {
     54284: {
@@ -154,6 +156,35 @@ class LibcnmlUrlTestCase(LibcnmlTestCase):
         self.parser = libcnml.CNMLParser(self.cnml_url)
         if not self.parser.loaded:
             raise ValueError('could not load CNMLParser')
+
+
+class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
+    cnml_file = 'data/54284.cnml'
+
+    def setUp(self):
+        filename = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            self.cnml_file
+        )
+        self.parser = libcnml.CNMLParser(filename)
+
+    def test_node_title(self):
+        node = self.parser.getNode(48441)
+        self.assertEqual(node.title, 'ANDBerria38')
+
+    def test_node_antenna_elevation(self):
+        node = self.parser.getNode(48441)
+        self.assertEqual(node.antenna_elevation, 12)
+
+    def test_node_created(self):
+        node = self.parser.getNode(48441)
+        self.assertIsInstance(node.created, datetime.datetime)
+        self.assertEqual(node.created.strftime('%Y-%m-%d %H:%M'), '2012-05-23 06:47')
+
+    def test_node_updated(self):
+        node = self.parser.getNode(48441)
+        self.assertIsInstance(node.updated, datetime.datetime)
+        self.assertEqual(node.updated.strftime('%Y-%m-%d %H:%M'), '2013-01-09 12:01')
 
 
 class Zone55284TestCase(LibcnmlTestCase):
