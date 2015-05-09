@@ -21,6 +21,7 @@
 from __future__ import absolute_import
 import os
 import six
+import datetime
 
 from libcnml import logger
 
@@ -154,14 +155,14 @@ class CNMLNode(object):
     CNML can also provide the total amount of links of this node
     """
     def __init__(self, nid, title, lat, lon, nlinks, status,
-                 antenna_elevation):
+                 elevation, created):
         self.id = nid
         self.title = title
         self.latitude = lat
         self.longitude = lon
         self.totalLinks = nlinks
-        self.antenna_elevation = antenna_elevation
-        # self.created = created
+        self.antenna_elevation = elevation
+        self.created = datetime.datetime.strptime(created, '%Y%m%d %H%M')
         # self.updated = updated
         self.status = status
         self.devices = dict()
@@ -193,10 +194,11 @@ class CNMLNode(object):
         status = Status.strToStatus(status)
         elevation = n.getAttribute('antenna_elevation') or 0
         elevation = int(elevation)
-        #created = n.getAttribute('created')  # parse date chunga
+        created = n.getAttribute('created')  # parse date chunga
         #updated = n.getAttribute('updated')  # parse date chunga
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status, elevation)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status,
+                           elevation, created)
         return newnode
 
     @staticmethod
@@ -213,8 +215,10 @@ class CNMLNode(object):
         status = Status.strToStatus(status)
         elevation = n.get('antenna_elevation') or 0
         elevation = int(elevation)
+        created = n.get('created')
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status, elevation)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status,
+                           elevation, created)
         return newnode
 
     @staticmethod

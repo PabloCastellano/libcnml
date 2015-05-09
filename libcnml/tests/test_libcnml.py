@@ -1,6 +1,8 @@
 import os
 import unittest
 import libcnml
+import datetime
+
 
 DATA = {
     54284: {
@@ -173,6 +175,11 @@ class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
     def test_node_antenna_elevation(self):
         node = self.parser.getNode(48441)
         self.assertEqual(node.antenna_elevation, 12)
+
+    def test_node_created(self):
+        node = self.parser.getNode(48441)
+        self.assertIsInstance(node.created, datetime.datetime)
+        self.assertEqual(node.created.strftime('%Y-%m-%d %H:%M'), '2012-05-23 06:47')
 
 
 class Zone55284TestCase(LibcnmlTestCase):
