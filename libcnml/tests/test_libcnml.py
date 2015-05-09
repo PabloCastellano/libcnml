@@ -170,6 +170,11 @@ class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
         node = self.parser.getNode(48441)
         self.assertEqual(node.title, 'ANDBerria38')
 
+    def test_node_antenna_elevation(self):
+        node = self.parser.getNode(48441)
+        self.assertEqual(node.antenna_elevation, 12)
+
+
 class Zone55284TestCase(LibcnmlTestCase):
     cnml_file = 'data/55284.cnml'
     data = DATA[55284]

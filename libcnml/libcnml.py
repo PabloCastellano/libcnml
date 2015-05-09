@@ -153,13 +153,14 @@ class CNMLNode(object):
     A node has a title and a status, which is the most useful for the end-users
     CNML can also provide the total amount of links of this node
     """
-    def __init__(self, nid, title, lat, lon, nlinks, status):
+    def __init__(self, nid, title, lat, lon, nlinks, status,
+                 antenna_elevation):
         self.id = nid
         self.title = title
         self.latitude = lat
         self.longitude = lon
         self.totalLinks = nlinks
-        # self.elevation = antenna_elevation
+        self.antenna_elevation = antenna_elevation
         # self.created = created
         # self.updated = updated
         self.status = status
@@ -195,7 +196,7 @@ class CNMLNode(object):
         #created = n.getAttribute('created')  # parse date chunga
         #updated = n.getAttribute('updated')  # parse date chunga
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status, elevation)
         return newnode
 
     @staticmethod
@@ -210,8 +211,10 @@ class CNMLNode(object):
         nlinks = int(nlinks)
         status = n.get('status')
         status = Status.strToStatus(status)
+        elevation = n.get('antenna_elevation') or 0
+        elevation = int(elevation)
 
-        newnode = CNMLNode(nid, title, lat, lon, nlinks, status)
+        newnode = CNMLNode(nid, title, lat, lon, nlinks, status, elevation)
         return newnode
 
     @staticmethod
