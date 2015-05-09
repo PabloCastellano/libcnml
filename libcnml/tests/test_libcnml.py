@@ -156,6 +156,20 @@ class LibcnmlUrlTestCase(LibcnmlTestCase):
             raise ValueError('could not load CNMLParser')
 
 
+class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
+    cnml_file = 'data/54284.cnml'
+
+    def setUp(self):
+        filename = os.path.join(
+            os.path.abspath(os.path.dirname(__file__)),
+            self.cnml_file
+        )
+        self.parser = libcnml.CNMLParser(filename)
+
+    def test_node_title(self):
+        node = self.parser.getNode(48441)
+        self.assertEqual(node.title, 'ANDBerria38')
+
 class Zone55284TestCase(LibcnmlTestCase):
     cnml_file = 'data/55284.cnml'
     data = DATA[55284]
