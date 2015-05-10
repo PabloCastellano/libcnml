@@ -680,6 +680,8 @@ class CNMLParser(object):
         self.radios = None
         self.ifaces = None
         self.links = None
+        self.innerlinks = None
+        self.outerlinks = None
 
         if not lazy:
             self.loaded = self.load()
@@ -750,6 +752,12 @@ class CNMLParser(object):
 
     def getLinks(self):
         return self.links.values()
+
+    def get_inner_links(self):
+        return self.innerlinks.values()
+
+    def get_outer_links(self):
+        return self.outerlinks.values()
 
     def loadLxml(self, validate=True):
         try:
@@ -854,11 +862,6 @@ class CNMLParser(object):
                                 self.links[lid] = newlink
                                 self.ifaces[iid].addLink(newlink)
 
-        # Replace None by true reference of nodes/devices/interfaces
-        # Note that if they belong to a different zone they might not be defined in the CNML file
-        for link in self.getLinks():
-            link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
-
         return True
 
     def loadMinidom(self, validate=True):
@@ -958,11 +961,6 @@ class CNMLParser(object):
                                 self.links[lid] = newlink
                                 self.ifaces[iid].addLink(newlink)
 
-        # Replace None by true reference of nodes/devices/interfaces
-        # Note that if they belong to a different zone they might not be defined in the CNML file
-        for link in self.getLinks():
-            link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
-
         # Fix: return False
         return True
 
@@ -974,6 +972,8 @@ class CNMLParser(object):
         self.radios = dict()
         self.ifaces = dict()
         self.links = dict()
+        self.innerlinks = {}
+        self.outerlinks = {}
         self.url_contents = None
 
         # if URL has been passed, get the contents
@@ -993,6 +993,16 @@ class CNMLParser(object):
 
         if loaded:
             logger.info('Loaded "%s" successfully' % self.filename)
+
+            # Replace None by true reference of nodes/devices/interfaces
+            # Note that if they belong to a different zone they might not be defined in the CNML file
+            for link in self.getLinks():
+                link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
+                if isinstance(link.nodeA, CNMLNode) and isinstance(link.nodeB, CNMLNode):
+                    # inner
+                    self.innerlinks[link.id] = link
+                else:
+                    self.outerlinks[link.id] = link
         else:
             logger.error('There were some errors loading "%s"' % self.filename)
 
