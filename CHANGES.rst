@@ -6,6 +6,14 @@ Version 1.0 [unreleased]
 
 - TODO
 
+Version 0.9.1 [2015-05-10]
+--------------------------
+
+- Fixed bug in some cases when decoding URLs
+- Added more tests
+- Parse more attributes (created, updated, antenna_elevation)
+- New methods: get_inner_links() and get_outer_links()
+
 Version 0.9 [2015-05-08]
 ------------------------
 
