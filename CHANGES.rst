@@ -6,6 +6,13 @@ Version 1.0 [unreleased]
 
 - TODO
 
+Version 0.9.2 [2015-05-11]
+--------------------------
+
+- CNMLLink: status is now libcnml.Status
+- Removed NEWS (replaced by CHANGES.rst)
+- Added README.md to MANIFEST.in. It was preventing the egg package from being installed.
+
 Version 0.9.1 [2015-05-10]
 --------------------------
 
