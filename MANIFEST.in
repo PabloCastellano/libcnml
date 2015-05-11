@@ -1,5 +1,3 @@
 include libcnml/cnml.dtd
-include NEWS
-include LICENSE.txt
 recursive-include libcnml/tests/data *cnml
 exclude MANIFEST.in
