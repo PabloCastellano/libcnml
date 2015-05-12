@@ -23,6 +23,7 @@ or you can get it from PYPI by using pip:
 
 Optionally you can also install lxml (read the note below):
 
+    sudo apt-get install libxml2-dev libxslt1-dev
     pip install lxml
 
 lxml
