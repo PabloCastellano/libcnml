@@ -4,6 +4,8 @@ LibCNML
 **libcnml** is a CNML parser library for Python.
 
 [![Travis libcnml](https://travis-ci.org/PabloCastellano/libcnml.svg?branch=master)](https://travis-ci.org/PabloCastellano/libcnml)
+[![Pypi libcnml](https://badge.fury.io/py/libcnml.png)]( https://pypi.python.org/pypi/libcnml)
+[![Downloads libcnml](https://img.shields.io/pypi/dm/libcnml.svg)](https://pypi.python.org/pypi/libcnml)
 
 It was part of the [Guifi.net Studio](https://github.com/PabloCastellano/guifinetstudio) project developed by Pablo Castellano
 during Google Summer of Code 2012.
