@@ -143,6 +143,9 @@ class CNMLZone(object):
         else:
             return CNMLZone.parseMinidom(z)
 
+    def __str__(self):
+        return 'CNMLZone({0}): {1}'.format(self.id, self.title)
+
 
 class CNMLNode(object):
     """
@@ -231,6 +234,9 @@ class CNMLNode(object):
             return CNMLNode.parseLxml(n)
         else:
             return CNMLNode.parseMinidom(n)
+
+    def __str__(self):
+        return 'CNMLNode({0}): {1} ({2})'.format(self.id, self.title, self.status)
 
 
 class CNMLService(object):
@@ -351,6 +357,9 @@ class CNMLDevice(object):
         else:
             return CNMLDevice.parseMinidom(d, parent)
 
+    def __str__(self):
+        return 'CNMLDevice({0}): {1}'.format(self.id, self.title)
+
 
 class CNMLRadio(object):
     """
@@ -422,6 +431,9 @@ class CNMLRadio(object):
         else:
             return CNMLRadio.parseMinidom(r, parent)
 
+    def __str__(self):
+        return 'CNMLRadio({0}): {1}'.format(self.id, self.ssid)
+
 
 class CNMLInterface(object):
     """
@@ -474,6 +486,9 @@ class CNMLInterface(object):
             return CNMLInterface.parseLxml(i, parent)
         else:
             return CNMLInterface.parseMinidom(i, parent)
+
+    def __str__(self):
+        return 'CNMLInterface({0}): {1} [{2}]'.format(self.id, self.ipv4, self.type)
 
 
 # Note that for two connected nodes there's just one link, that is,
@@ -604,6 +619,9 @@ class CNMLLink(object):
             return CNMLLink.parseLxml(l, parent)
         else:
             return CNMLLink.parseMinidom(l, parent)
+
+    def __str__(self):
+        return 'CNMLLink({0}): [{1}<-->{2}] ({3})'.format(self.id, self.interfaceA, self.interfaceB, self.type)
 
 
 class Status(object):
@@ -1061,3 +1079,5 @@ class CNMLParser(object):
     def getFilename(self):
         return self.filename
 
+    def __str__(self):
+        return 'CNMLParser: {1}'.format(self.filename)
