@@ -10,6 +10,19 @@ LibCNML
 It was part of the [Guifi.net Studio](https://github.com/PabloCastellano/guifinetstudio) project developed by Pablo Castellano
 during Google Summer of Code 2012.
 
+What is CNML
+============
+
+Community Network Mark Up Language (CNML) is a project that aims to define an open ISO standard and scalable for describing mesh clouds, though it's not limited to this kind of networks and nowadays it's being used also in point to point infrastructure networks.
+
+CNML is a specification based on XML, which makes it easily extendible and readable for humans besides of computers. It includes some ideas from other implementations and previous concepts like *nodeXchange* and *SNDX*.
+
+Some advantages of using CNML is that it allows to uncouple different functionalities independently of the web application used to show the data, reducing dependence from it and its internal tables of the database.
+
+You can read more about it on:
+- http://cnml.info
+- http://en.wiki.guifi.net/wiki/CNML
+
 Install
 =======
 
