@@ -438,7 +438,7 @@ class CNMLInterface(object):
         self.mac = mac
         self.type = itype
         self.links = dict()
-        self.parentRadio = parent
+        self.parent = parent  # It can be a CNMLDevice or a CNMLRadio
 
     def get_link(self, lid):
         return self.links[lid]
