@@ -1,4 +1,4 @@
 include libcnml/cnml.dtd
 include CHANGES.rst README.md LICENSE.txt
-recursive-include libcnml/tests/data *cnml
-exclude MANIFEST.in
+recursive-include libcnml/tests *.py
+recursive-include libcnml/tests/data *.cnml
