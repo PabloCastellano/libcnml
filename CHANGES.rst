@@ -6,6 +6,12 @@ Version 1.0 [unreleased]
 
 - TODO
 
+Version 0.9.3 [2016-01-11]
+--------------------------
+
+- Implemented __str__() methods
+- Some fixes to ease packaging in linux distros (issue #14)
+
 Version 0.9.2 [2015-05-11]
 --------------------------
 
