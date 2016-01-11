@@ -28,7 +28,6 @@ setup(
     download_url='https://github.com/PabloCastellano/libcnml/archive/master.zip',
     keywords = ['cnml', 'free networks', 'guifi.net'],
     license=__license__,
-    data_files=[('', ['LICENSE.txt'])],
     include_package_data=True,
     zip_safe=False,
     install_requires=['six'],
