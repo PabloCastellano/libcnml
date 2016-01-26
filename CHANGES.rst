@@ -6,6 +6,11 @@ Version 1.0 [unreleased]
 
 - TODO
 
+Version 0.9.4 [2016-01-27]
+--------------------------
+
+- Removed shebang (issue #17)
+
 Version 0.9.3 [2016-01-11]
 --------------------------
 
