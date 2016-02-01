@@ -71,6 +71,7 @@
 	title			CDATA	#REQUIRED
 	type			CDATA	#REQUIRED
 	updated			CDATA	#IMPLIED
+	mainipv4		CDATA	#REQUIRED
 >
 
 <!ATTLIST service

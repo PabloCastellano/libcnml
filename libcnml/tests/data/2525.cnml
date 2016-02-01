@@ -1,93 +1,146 @@
 <?xml version="1.0"?>
-<cnml version="0.1" server_id="1" server_url="http://guifi.net" generated="20130210 0829">
+<cnml version="0.1" server_id="1" server_url="http://guifi.net" generated="20160201 0625">
     <class network_description="detail" mapping="y"/>
-    <network nodes="6" devices="9" ap="5" client="2" services="9" links="7">
-        <zone id="2525" parent_id="2441" title="Canet de Mar" time_zone="+01 2 2" ntp_servers="10.138.53.66" dns_servers="10.138.53.66" graph_server="51172" created="20050809 1202" updated="20121217 0507" zone_nodes="6" box="2.570028,41.581873,2.592430,41.600746" access_points="5" clients="2" devices="9" services="9" links="7">&lt;p&gt;Poblaci&amp;oacute; de Canet de Mar&lt;/p&gt;
-            <node id="15549" title="CanetAmple" lat="41.588576" lon="2.582648" antenna_elevation="15" status="Planned" created="20080623 0936" devices="1">Punt d'acc&#xE9;s amb vistes al campanar
-                <device id="9748" title="CanetAmple-Router1" type="radio" status="Planned" created="20080623 0937" updated="20120727 1136" firmware="DD-guifi" name="WRT54GL"/>
-            </node>
-            <node id="52279" title="CanetCuba" lat="41.590069" lon="2.575718" antenna_elevation="15" status="Planned" created="20120926 0520" updated="20120927 0925" clients="1" devices="1" links="1">
-                <device id="50021" title="CanetCubaRd1" type="radio" status="Planned" created="20130129 1022" firmware="AirOsv3.6+" name="NanoStation5">
+    <network nodes="17" devices="13" ap="5" client="5" services="8" links="13">
+        <zone id="2525" parent_id="2441" title="Canet de Mar" time_zone="+01 2 2" ntp_servers="10.138.53.66" dns_servers="10.138.53.66" graph_server="51172" created="20050809 1202" updated="20141210 0345" zone_nodes="17" box="2.553750,41.582900,2.595250,41.614700" access_points="5" clients="5" devices="13" services="8" links="13">&lt;h2&gt;&lt;strong&gt;Atenci&amp;oacute;!&lt;br /&gt;&#xD;
+Es busquen col&amp;middot;laboradors que visquin en zones elevades de Canet per tal de fer cr&amp;eacute;ixer la xarxa!!&lt;/strong&gt;&lt;/h2&gt;&#xD;
+&lt;br /&gt;&#xD;
+A canvi podreu disposar de connexi&amp;oacute; a la xarxa guifi.net i tots els serveis que ofereix fora de Canet, o b&amp;eacute; sortida a internet mitjan&amp;ccedil;ant Proxy les 24h del dia.&lt;br /&gt;&#xD;
+&lt;br /&gt;&#xD;
+Per contactar:&amp;nbsp;andreu.bassols@guifi.net o b&amp;eacute; https://www.facebook.com/groups/guificanet/&lt;br /&gt;&#xD;
+&lt;br /&gt;
+            <node id="15549" title="CanetAmple" lat="41.588576" lon="2.582648" antenna_elevation="15" status="Inactive" created="20080623 0936" updated="20130918 0102"/>
+            <node id="52279" title="CanetCuba" lat="41.590069" lon="2.575718" antenna_elevation="15" status="Working" created="20120926 0520" updated="20130430 0930" clients="1" devices="1" links="1">
+                <device id="50021" mainipv4="10.138.53.101" title="CanetCubaRd1" type="radio" status="Working" created="20130129 1022" updated="20130430 0930" firmware="AirOsv3.6+" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico">
                     <radio id="0" device_id="50021" ssid="CDeMCntCbRd1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="14" clients_accepted="No" snmp_name="ath0">
                         <interface id="84998" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.101" mask="255.255.255.224">
-                            <link id="56317" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="ap/client" link_status="Planned"/>
+                            <link id="56317" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="ap/client" link_status="Working"/>
                         </interface>
                     </radio>
                     <interface id="84998" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.101" mask="255.255.255.224"/>
                 </device>
             </node>
+            <node id="56594" title="CanetDrAngles" lat="41.593034" lon="2.578135" antenna_elevation="15" status="Working" created="20130226 0112" updated="20130302 1057" clients="1" devices="1" links="1">
+                <device id="51034" mainipv4="10.138.53.102" title="CanetDrAnglesRd1" type="radio" status="Working" created="20130226 0758" updated="20130302 1057" firmware="AirOsv30" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico">&amp;nbsp;
+                    <radio id="0" device_id="51034" ssid="CDeMCntDrnglsRd1CPE0" mode="client" protocol="802.11b" antenna_gain="14" clients_accepted="No" snmp_name="wifi0">
+                        <interface id="86420" type="Wan" mac="00:15:6D:B6:66:DD" ipv4="10.138.53.102" mask="255.255.255.224">
+                            <link id="57394" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="ap/client" link_status="Working"/>
+                        </interface>
+                    </radio>
+                    <interface id="86420" type="Wan" mac="00:15:6D:B6:66:DD" ipv4="10.138.53.102" mask="255.255.255.224"/>
+                </device>
+            </node>
+            <node id="66153" title="CanetFlorentina" lat="41.601833" lon="2.578965" antenna_elevation="4" status="Planned" created="20140212 1029" updated="20140212 1031" clients="1" devices="1" links="1">
+                <device id="62483" mainipv4="10.138.53.104" title="CntFlrntnRd1" type="radio" status="Planned" created="20140212 1031" firmware="AirOsv30" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico">
+                    <radio id="0" device_id="62483" ssid="CDeMCntFlrntnRd1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="14" clients_accepted="No" snmp_name="wifi0">
+                        <interface id="102790" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.104" mask="255.255.255.224">
+                            <link id="70459" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="ap/client" link_status="Planned"/>
+                        </interface>
+                    </radio>
+                    <interface id="102790" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.104" mask="255.255.255.224"/>
+                </device>
+            </node>
             <node id="40023" title="CanetFont16" lat="41.589031" lon="2.582570" antenna_elevation="18" status="Planned" created="20110708 1214"/>
-            <node id="43865" title="CanetMarc35" lat="41.590574" lon="2.578099" antenna_elevation="12" status="Working" created="20111128 1020" updated="20120820 0442" access_points="3" devices="3" links="4">
-                <device id="48483" title="CanetMarc35Rd1" type="radio" status="Working" created="20121216 1211" updated="20121216 1218" firmware="RouterOSv5.x" name="Routerboard 600">
+            <node id="43865" title="CanetMarc35" lat="41.590574" lon="2.578099" antenna_elevation="12" status="Working" created="20111128 1020" updated="20120820 0442" access_points="3" devices="4" links="6">
+                <device id="48483" mainipv4="10.138.53.97" title="CanetMarc35Rd1" type="radio" status="Inactive" created="20121216 1211" updated="20150324 0831" firmware="RouterOSv5.x" name="Routerboard 600">
                     <radio id="0" device_id="48483" ssid="CanetMarc35Rd2" mode="ap" protocol="802.11a" channel="5000" antenna_angle="360" antenna_gain="8" clients_accepted="Yes" snmp_name="wlan1">
                         <interface id="77127" type="wLan/Lan" mac="00:0C:42:D9:7A:67" ipv4="10.138.53.97" mask="255.255.255.224">
                             <link id="54568" linked_device_id="47768" linked_node_id="54001" linked_interface_id="81573" link_type="ap/client" link_status="Working"/>
-                            <link id="56317" linked_device_id="50021" linked_node_id="52279" linked_interface_id="84998" link_type="ap/client" link_status="Planned"/>
+                            <link id="56317" linked_device_id="50021" linked_node_id="52279" linked_interface_id="84998" link_type="ap/client" link_status="Working"/>
+                            <link id="57394" linked_device_id="51034" linked_node_id="56594" linked_interface_id="86420" link_type="ap/client" link_status="Working"/>
+                            <link id="70459" linked_device_id="62483" linked_node_id="66153" linked_interface_id="102790" link_type="ap/client" link_status="Planned"/>
                         </interface>
                     </radio>
-                    <radio id="1" device_id="48483" ssid="CanetMarc35-NB-WDS-Romani" mode="ap" protocol="802.11a" channel="5000" antenna_angle="6" antenna_gain="22" clients_accepted="No" snmp_name="wlan2">
-                        <interface id="82641" type="wds/p2p" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.54.105" mask="255.255.255.248">
-                            <link id="55264" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82626" link_type="wds" link_status="Working"/>
+                    <radio id="1" device_id="48483" ssid="CanetMarc35NBwdsRomani" mode="ap" protocol="802.11a" channel="5000" antenna_angle="6" antenna_gain="22" clients_accepted="No" snmp_name="wlan2">
+                        <interface id="82641" type="wdsCanetMarc35-NB-WDS-Romani" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.54.105" mask="255.255.255.248">
+                            <link id="55264" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82626" link_type="wds" link_status="Inactive"/>
                         </interface>
                     </radio>
-                    <radio id="2" device_id="48483" ssid="CanetMarc35-NB-WDS-CanTiril" mode="ap" protocol="802.11a" channel="5000" antenna_angle="6" antenna_gain="25" clients_accepted="No" snmp_name="wlan3">
-                        <interface id="83515" type="wds/p2p" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.55.65" mask="255.255.255.248">
-                            <link id="55341" linked_device_id="45901" linked_node_id="52465" linked_interface_id="78772" link_type="wds" link_status="Planned"/>
+                    <radio id="2" device_id="48483" ssid="CanetMarc35NBwdsTiril" mode="ap" protocol="802.11a" channel="5000" antenna_angle="6" antenna_gain="25" clients_accepted="No" snmp_name="wlan3">
+                        <interface id="83515" type="wdsCanetMarc35-NB-WDS-CanTiril" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.55.65" mask="255.255.255.248">
+                            <link id="55341" linked_device_id="45901" linked_node_id="52465" linked_interface_id="78772" link_type="wds" link_status="Inactive"/>
                         </interface>
                     </radio>
                     <interface id="77127" type="wLan/Lan" mac="00:0C:42:D9:7A:67" ipv4="10.138.53.97" mask="255.255.255.224">
-                        <link id="55265" linked_device_id="49081" linked_node_id="43865" linked_interface_id="83516" link_type="cable" link_status="Planned"/>
+                        <link id="55265" linked_device_id="49081" linked_node_id="43865" linked_interface_id="83516" link_type="cable" link_status="Working"/>
                         <link id="54589" linked_device_id="48479" linked_node_id="43865" linked_interface_id="82664" link_type="cable" link_status="Working"/>
+                        <link id="57846" linked_device_id="51196" linked_node_id="43865" linked_interface_id="86955" link_type="cable" link_status="Planned"/>
                     </interface>
+                    <interface id="83515" type="wdsCanetMarc35-NB-WDS-CanTiril" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.55.65" mask="255.255.255.248"/>
+                    <interface id="82641" type="wdsCanetMarc35-NB-WDS-Romani" mac="FF:FF:FF:FF:FF:FF" ipv4="172.25.54.105" mask="255.255.255.248"/>
                 </device>
-                <device id="48479" title="CanetMarc35NB-Romani" type="generic" status="Working" created="20121215 0909" snmp_index="4">
+                <device id="48479" mainipv4="10.138.53.99" title="CanetMarc35NB-Romani" type="generic" status="Working" created="20121215 0909" snmp_index="4">
                     <interface id="82664" type="Lan" mac="00:00:00:00:00:00" ipv4="10.138.53.99" mask="255.255.255.224">
                         <link id="54589" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="cable" link_status="Working"/>
                     </interface>
                 </device>
-                <device id="49081" title="CanetMarc35NB-CanTiril" type="generic" status="Planned" created="20130104 0805" snmp_index="4">
+                <device id="49081" mainipv4="10.138.53.100" title="CanetMarc35NB-CanTiril" type="generic" status="Working" created="20130104 0805" updated="20140215 0339" snmp_index="4">&amp;nbsp;
                     <interface id="83516" type="Lan" mac="00:00:00:00:00:00" ipv4="10.138.53.100" mask="255.255.255.224">
-                        <link id="55265" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="cable" link_status="Planned"/>
+                        <link id="55265" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="cable" link_status="Working"/>
+                    </interface>
+                </device>
+                <device id="51196" mainipv4="" title="CanetMarc35Srvr1" type="server" status="Building" created="20130304 0104" updated="20140131 0421">&lt;strong&gt;Servidor CanetMarc35&lt;br /&gt;&#xD;
+Core i3, 6 GB&lt;/strong&gt;&lt;strong&gt;&amp;nbsp;RAM con Proxmox 2.2 &lt;/strong&gt;&lt;br /&gt;
+                    <interface id="86955" type="other" mac="00:00:00:00:00:00" ipv4="10.138.53.103" mask="255.255.255.224">
+                        <link id="57846" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="cable" link_status="Planned"/>
                     </interface>
                 </device>
             </node>
-            <node id="23291" title="CanetRomani" lat="41.589027" lon="2.583655" antenna_elevation="6" status="Working" created="20090729 0639" updated="20120820 1220" access_points="2" devices="3" links="1" services="9">
-                <device id="47297" title="CanetRomaniSrvr1" type="server" status="Working" created="20121112 1004" updated="20121112 1005">
+            <node id="72136" title="CanetMasRamonet" lat="41.590921" lon="2.580707" antenna_elevation="6" status="Planned" created="20140826 1121" updated="20140911 0224" clients="1" devices="1" links="1">
+                <device id="69454" mainipv4="10.138.53.68" title="CanetMasRamonetRd1" type="radio" status="Planned" created="20140925 0642" firmware="AirOsv3.6+" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico">&amp;nbsp;
+                    <radio id="0" device_id="69454" ssid="CDeMCntMsRmntRd1CPE0" mode="client" protocol="802.11b" antenna_angle="6" antenna_gain="22" clients_accepted="No" snmp_name="ath0">
+                        <interface id="120315" type="Wan" mac="04:18:D6:26:FB:0D" ipv4="10.138.53.68" mask="255.255.255.224">
+                            <link id="78121" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82624" link_type="ap/client" link_status="Planned"/>
+                        </interface>
+                    </radio>
+                    <interface id="120315" type="Wan" mac="04:18:D6:26:FB:0D" ipv4="10.138.53.68" mask="255.255.255.224"/>
+                </device>
+            </node>
+            <node id="71954" title="CanetMiramar10" lat="41.587166" lon="2.579929" antenna_elevation="25" status="Planned" created="20140820 0830" updated="20140821 1230"/>
+            <node id="72175" title="CanetPauCasals" lat="41.596135" lon="2.578772" antenna_elevation="20" status="Planned" created="20140826 0755" updated="20150206 0105" devices="1">
+                <device id="69339" mainipv4="" title="CanetPauCasalsRd1" type="radio" status="Planned" created="20140922 0651" firmware="AirOsv30" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico"/>
+            </node>
+            <node id="83754" title="CanetRialPollRoig" lat="41.587848" lon="2.568440" antenna_elevation="6" status="Planned" created="20151201 1113" updated="20151216 0819"/>
+            <node id="23291" title="CanetRomani" lat="41.589074" lon="2.583656" antenna_elevation="6" status="Inactive" created="20090729 0639" updated="20160104 0312" access_points="2" devices="3" links="2" services="8">
+                <device id="47297" mainipv4="10.138.53.66" title="CanetRomaniSrvr1" type="server" status="Inactive" created="20121112 1004" updated="20160104 0312">
                     <interface id="82631" type="Lan" mac="00:00:00:00:00:00" ipv4="10.138.53.66" mask="255.255.255.224">
                         <link id="54560" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82624" link_type="cable" link_status="Working"/>
                     </interface>
-                    <service id="51633" title="CanetRomani-Radio" type="radio" status="Building" created="20120904 0113" updated="20121112 1009"/>
-                    <service id="51061" title="CanetRomani-PROXY" type="Proxy" status="Working" created="20120814 0718" updated="20130124 1133"/>
-                    <service id="51172" title="CanetRomani-GRAF" type="SNPgraphs" status="Working" created="20120819 1252" updated="20121112 1009"/>
-                    <service id="51174" title="CanetRomaniNTP" type="NTP" status="Working" created="20120819 0130" updated="20121112 1008"/>
-                    <service id="51216" title="CanetRomani-WWW" type="web" status="Working" created="20120820 0309" updated="20130124 1134"/>
-                    <service id="51223" title="CanetRomani-FTP" type="ftp" status="Working" created="20120820 0549" updated="20130124 1132"/>
-                    <service id="54270" title="CanetRomani-P2P" type="p2p" status="Working" created="20121205 0616" updated="20130124 1130"/>
-                    <service id="54553" title="CanetRomani-DNS" type="DNS" status="Working" created="20121217 0505" updated="20130124 1132"/>
-                    <service id="55609" title="CanetRomaniIperf" type="iperf" status="Working" created="20130124 1138"/>
+                    <service id="51633" title="CanetRomani-Radio" type="radio" status="Building" created="20120904 0113" updated="20130813 0844"/>
+                    <service id="51061" title="CanetRomani-PROXY" type="Proxy" status="Inactive" created="20120814 0718" updated="20160104 0325"/>
+                    <service id="51172" title="CanetRomani-GRAF" type="SNPgraphs" status="Working" created="20120819 1252" updated="20160104 0322"/>
+                    <service id="51174" title="CanetRomaniNTP" type="NTP" status="Working" created="20120819 0130" updated="20130813 0844"/>
+                    <service id="51216" title="CanetRomani-WWW" type="web" status="Working" created="20120820 0309" updated="20130813 0845"/>
+                    <service id="51223" title="CanetRomani-FTP" type="ftp" status="Inactive" created="20120820 0549" updated="20160104 0324"/>
+                    <service id="54553" title="CanetRomani-DNS" type="DNS" status="Inactive" created="20121217 0505" updated="20160104 0325"/>
+                    <service id="55609" title="CanetRomaniIperf" type="iperf" status="Inactive" created="20130124 1138" updated="20160104 0325"/>
                 </device>
-                <device id="48473" title="CanetRomaniRd1" type="radio" status="Working" created="20121215 0722" updated="20121215 1101" firmware="RouterOSv5.x" name="Routerboard 600">
+                <device id="48473" mainipv4="10.138.53.65" title="CanetRomaniRd1" type="radio" status="Inactive" created="20121215 0722" updated="20150324 0823" firmware="RouterOSv5.x" name="Routerboard 600">
                     <radio id="0" device_id="48473" ssid="CanetRomaniAP" mode="ap" protocol="802.11n" channel="5000" antenna_gain="7" clients_accepted="Yes" snmp_name="wlan1">
-                        <interface id="82624" type="wLan/Lan" mac="00:0C:42:D9:7A:62" ipv4="10.138.53.65" mask="255.255.255.224"/>
+                        <interface id="82624" type="wLan/Lan" mac="00:0C:42:D9:7A:62" ipv4="10.138.53.65" mask="255.255.255.224">
+                            <link id="78121" linked_device_id="69454" linked_node_id="72136" linked_interface_id="120315" link_type="ap/client" link_status="Planned"/>
+                        </interface>
                     </radio>
                     <radio id="1" device_id="48473" ssid="CanetRomaniWDS" mode="ap" protocol="802.11n" channel="5000" antenna_angle="6" antenna_gain="25" clients_accepted="No" snmp_name="wlan2">
-                        <interface id="82626" type="wds/p2p" mac="DC:9F:DB:12:42:20" ipv4="172.25.54.106" mask="255.255.255.248">
-                            <link id="55264" linked_device_id="48483" linked_node_id="43865" linked_interface_id="82641" link_type="wds" link_status="Working"/>
+                        <interface id="82626" type="wdsCanetRomaniWDS" mac="DC:9F:DB:12:42:20" ipv4="172.25.54.106" mask="255.255.255.248">
+                            <link id="55264" linked_device_id="48483" linked_node_id="43865" linked_interface_id="82641" link_type="wds" link_status="Inactive"/>
                         </interface>
                     </radio>
                     <interface id="82624" type="wLan/Lan" mac="00:0C:42:D9:7A:62" ipv4="10.138.53.65" mask="255.255.255.224">
-                        <link id="54559" linked_device_id="48477" linked_node_id="23291" linked_interface_id="82630" link_type="cable" link_status="Working"/>
+                        <link id="54559" linked_device_id="48477" linked_node_id="23291" linked_interface_id="82630" link_type="cable" link_status="Inactive"/>
                         <link id="54560" linked_device_id="47297" linked_node_id="23291" linked_interface_id="82631" link_type="cable" link_status="Working"/>
                     </interface>
+                    <interface id="82626" type="wdsCanetRomaniWDS" mac="DC:9F:DB:12:42:20" ipv4="172.25.54.106" mask="255.255.255.248"/>
                 </device>
-                <device id="48477" title="CanetRomaniNB-Marc35" type="generic" status="Working" created="20121215 0800" updated="20121215 0909" snmp_index="4">
+                <device id="48477" mainipv4="10.138.53.67" title="CanetRomaniNB-Marc35" type="generic" status="Inactive" created="20121215 0800" updated="20160104 0311" snmp_index="4">
                     <interface id="82630" type="Lan" mac="00:00:00:00:00:00" ipv4="10.138.53.67" mask="255.255.255.224">
-                        <link id="54559" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82624" link_type="cable" link_status="Working"/>
+                        <link id="54559" linked_device_id="48473" linked_node_id="23291" linked_interface_id="82624" link_type="cable" link_status="Inactive"/>
                     </interface>
                 </device>
             </node>
-            <node id="54001" title="CanetSanMiquel53" lat="41.590241" lon="2.577688" antenna_elevation="5" status="Working" created="20121124 0852" updated="20121124 0854" clients="1" devices="1" links="1">&amp;nbsp;Client al Carrer San Miquel 53
-                <device id="47768" title="CanetSanMiquel53Rd1" type="radio" status="Working" created="20121124 0853" updated="20121124 0854" firmware="AirOsv3.6+" name="NanoStation Loco5">&amp;nbsp;
+            <node id="57688" title="canetrossello5" lat="41.594022" lon="2.579029" antenna_elevation="15" status="Planned" created="20130405 0848"/>
+            <node id="54001" title="CanetSanMiquel53" lat="41.590241" lon="2.577688" antenna_elevation="5" status="Working" created="20121124 0852" updated="20121124 0854" clients="1" devices="1" links="1">
+                <device id="47768" mainipv4="10.138.53.98" title="CanetSanMiquel53Rd1" type="radio" status="Working" created="20121124 0853" updated="20121124 0854" firmware="AirOsv3.6+" name="5Ghz Nano/NanoLoco/Bullet/Lite/Pico">&amp;nbsp;
                     <radio id="0" device_id="47768" ssid="CDeMCntSnMql53Rd1CPE0" mode="client" protocol="802.11b" antenna_angle="30" antenna_gain="13" clients_accepted="No" snmp_name="ath0">
                         <interface id="81573" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.98" mask="255.255.255.224">
                             <link id="54568" linked_device_id="48483" linked_node_id="43865" linked_interface_id="77127" link_type="ap/client" link_status="Working"/>
@@ -96,6 +149,10 @@
                     <interface id="81573" type="Wan" mac="FF:FF:FF:FF:FF:FF" ipv4="10.138.53.98" mask="255.255.255.224"/>
                 </device>
             </node>
+            <node id="84269" title="CdMCampanar" lat="41.589932" lon="2.582731" antenna_elevation="40" status="Planned" created="20160101 0910"/>
+            <node id="83945" title="CdMFerranRoig" lat="41.594956" lon="2.580640" antenna_elevation="8" status="Planned" created="20151212 0428"/>
+            <node id="66818" title="CntSntJqm4" lat="41.589690" lon="2.576793" antenna_elevation="30" status="Planned" created="20140306 0125"/>
+            <node id="78569" title="Laubeach" lat="41.583267" lon="2.571917" antenna_elevation="3" status="Planned" created="20150514 0410"/>
         </zone>
     </network>
 </cnml>
