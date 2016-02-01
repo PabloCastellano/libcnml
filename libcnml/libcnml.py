@@ -1025,6 +1025,7 @@ class CNMLParser(object):
         else:
             logger.error('There were some errors loading "%s"' % self.filename)
 
+        self.loaded = loaded
         return loaded
 
     def getNodesFromZone(self, zid):
