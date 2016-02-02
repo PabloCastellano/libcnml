@@ -96,8 +96,14 @@ class CNMLZone(object):
     def add_node(self, n):
         self.nodes[n.id] = n
 
+    def get_node(self, nid):
+        return self.nodes[nid]
+
     def get_nodes(self):
         return self.nodes.values()
+
+    def get_subzone(self, zid):
+        return self.subzones[zid]
 
     def get_subzones(self):
         return self.subzones.values()
@@ -179,8 +185,14 @@ class CNMLNode(object):
         self.devices = dict()
         self.services = dict()
 
+    def get_device(self, did):
+        return self.devices[did]
+
     def get_devices(self):
         return self.devices.values()
+
+    def get_service(self, sid):
+        return self.services[sid]
 
     def get_services(self):
         return self.services.values()
@@ -289,8 +301,14 @@ class CNMLDevice(object):
         self.parentNode = parent
         # self.ssid = ssid
 
+    def get_radio(self, rid):
+        return self.radios[rid]
+
     def get_radios(self):
         return self.radios.values()
+
+    def get_interface(self, iid):
+        return self.interfaces[iid]
 
     def get_interfaces(self):
         return self.interfaces.values()
@@ -366,6 +384,9 @@ class CNMLRadio(object):
         self.interfaces = dict()
         self.parentDevice = parent
 
+    def get_interface(self, iid):
+        return self.interfaces[iid]
+
     def get_interfaces(self):
         return self.interfaces.values()
 
@@ -418,6 +439,9 @@ class CNMLInterface(object):
         self.type = itype
         self.links = dict()
         self.parentRadio = parent
+
+    def get_link(self, lid):
+        return self.links[lid]
 
     def get_links(self):
         return self.links.values()
@@ -711,23 +735,56 @@ class CNMLParser(object):
                 return node
         return None
 
+    def get_node(self, nid):
+        if not self.loaded:
+            self.load()
+        return self.nodes[nid]
+
     def get_nodes(self):
         return self.nodes.values()
+
+    def get_zone(self, zid):
+        if not self.loaded:
+            self.load()
+        return self.zones[zid]
 
     def get_zones(self):
         return self.zones.values()
 
+    def get_device(self, did):
+        if not self.loaded:
+            self.load()
+        return self.devices[did]
+
     def get_devices(self):
         return self.devices.values()
+
+    def get_service(self, sid):
+        if not self.loaded:
+            self.load()
+        return self.services[sid]
 
     def get_services(self):
         return self.services.values()
 
+    def get_radio(self, did, rid):
+        return self.radios[(did, rid)]
+
     def get_radios(self):
         return self.radios.values()
 
+    def get_interface(self, iid):
+        if not self.loaded:
+            self.load()
+        return self.ifaces[iid]
+
     def get_interfaces(self):
         return self.ifaces.values()
+
+    def get_link(self, lid):
+        if not self.loaded:
+            self.load()
+        return self.links[lid]
 
     def get_links(self):
         return self.links.values()
@@ -737,6 +794,32 @@ class CNMLParser(object):
 
     def get_outer_links(self):
         return self.outerlinks.values()
+
+    def get_nodes_from_zone(self, zid):
+        if not self.loaded:
+            self.load()
+        return self.zones[zid].nodes.values()
+
+    def get_subzones_from_zone(self, zid):
+        if not self.loaded:
+            self.load()
+        return self.zones[zid].subzones.values()
+
+    def get_zones_names(self):
+        if not self.loaded:
+            self.load()
+
+        return [z.title for z in self.getZones()]
+
+    def get_titles(self):
+        if not self.loaded:
+            self.load()
+
+        return [n.title for n in self.getNodes()]
+
+    # FIXME: filename not loaded
+    def get_filename(self):
+        return self.filename
 
     def _parse_zones(self, tree):
         # --zones--
@@ -946,62 +1029,6 @@ class CNMLParser(object):
 
         self.loaded = loaded
         return loaded
-
-    def get_nodes_from_zone(self, zid):
-        if not self.loaded:
-            self.load()
-        return self.zones[zid].nodes.values()
-
-    def get_subzones_from_zone(self, zid):
-        if not self.loaded:
-            self.load()
-        return self.zones[zid].subzones.values()
-
-    def get_service(self, sid):
-        if not self.loaded:
-            self.load()
-        return self.services[sid]
-
-    def get_interface(self, iid):
-        if not self.loaded:
-            self.load()
-        return self.ifaces[iid]
-
-    def get_node(self, nid):
-        if not self.loaded:
-            self.load()
-        return self.nodes[nid]
-
-    def get_zone(self, zid):
-        if not self.loaded:
-            self.load()
-        return self.zones[zid]
-
-    def get_link(self, lid):
-        if not self.loaded:
-            self.load()
-        return self.links[lid]
-
-    def get_device(self, did):
-        if not self.loaded:
-            self.load()
-        return self.devices[did]
-
-    def get_zones_names(self):
-        if not self.loaded:
-            self.load()
-
-        return [z.title for z in self.getZones()]
-
-    def get_titles(self):
-        if not self.loaded:
-            self.load()
-
-        return [n.title for n in self.getNodes()]
-
-    # FIXME: filename not loaded
-    def get_filename(self):
-        return self.filename
 
     # Deprecated methods
 
