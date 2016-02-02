@@ -21,6 +21,7 @@ from __future__ import absolute_import
 import os
 import six
 import datetime
+import warnings
 
 from libcnml import logger
 
@@ -88,17 +89,17 @@ class CNMLZone(object):
         self.nodes = dict()
 
     # @param z: CNMLZone
-    def addSubzone(self, z):
+    def add_subzone(self, z):
         self.subzones[z.id] = z
 
     # @param z: CNMLNode
-    def addNode(self, n):
+    def add_node(self, n):
         self.nodes[n.id] = n
 
-    def getNodes(self):
+    def get_nodes(self):
         return self.nodes.values()
 
-    def getSubzones(self):
+    def get_subzones(self):
         return self.subzones.values()
 
     @staticmethod
@@ -132,6 +133,24 @@ class CNMLZone(object):
     def __str__(self):
         return 'CNMLZone({0}): {1}'.format(self.id, self.title)
 
+    # Deprecated methods
+
+    def addSubzone(self, z):
+        warnings.warn("addSubzone() is deprecated and will be removed in the future.")
+        self.add_subzone(z)
+
+    def addNode(self, n):
+        warnings.warn("addNode() is deprecated and will be removed in the future.")
+        self.add_node(n)
+
+    def getNodes(self):
+        warnings.warn("getNodes() is deprecated and will be removed in the future.")
+        return self.get_nodes()
+
+    def getSubzones(self):
+        warnings.warn("getSubzones() is deprecated and will be removed in the future.")
+        return self.get_subzones()
+
 
 class CNMLNode(object):
     """
@@ -160,16 +179,16 @@ class CNMLNode(object):
         self.devices = dict()
         self.services = dict()
 
-    def getDevices(self):
+    def get_devices(self):
         return self.devices.values()
 
-    def getServices(self):
+    def get_services(self):
         return self.services.values()
 
-    def addDevice(self, dev):
+    def add_device(self, dev):
         self.devices[dev.id] = dev
 
-    def addService(self, service):
+    def add_service(self, service):
         self.services[service.id] = service
 
     @staticmethod
@@ -183,7 +202,7 @@ class CNMLNode(object):
         nlinks = get_attribute(n, 'links') or 0
         nlinks = int(nlinks)
         status = get_attribute(n, 'status')
-        status = Status.strToStatus(status)
+        status = Status.str_to_status(status)
         elevation = get_attribute(n, 'antenna_elevation') or 0
         elevation = int(elevation)
         created = get_attribute(n, 'created')
@@ -195,6 +214,24 @@ class CNMLNode(object):
 
     def __str__(self):
         return 'CNMLNode({0}): {1} ({2})'.format(self.id, self.title, self.status)
+
+    # Deprecated methods
+
+    def getDevices(self):
+        warnings.warn("getDevices() is deprecated and will be removed in the future.")
+        return self.get_devices()
+
+    def getServices(self):
+        warnings.warn("getServices() is deprecated and will be removed in the future.")
+        return self.get_services()
+
+    def addDevice(self, dev):
+        warnings.warn("addDevice() is deprecated and will be removed in the future.")
+        return self.add_device(dev)
+
+    def addService(self, service):
+        warnings.warn("addService() is deprecated and will be removed in the future.")
+        return self.add_service(service)
 
 
 class CNMLService(object):
@@ -220,7 +257,7 @@ class CNMLService(object):
         title = get_attribute(s, 'title')
         stype = get_attribute(s, 'type')
         status = get_attribute(s, 'status')
-        status = Status.strToStatus(status)
+        status = Status.str_to_status(status)
         created = get_attribute(s, 'created')
 
         newservice = CNMLService(sid, title, stype, status, created, parent)
@@ -243,16 +280,16 @@ class CNMLDevice(object):
         self.parentNode = parent
         # self.ssid = ssid
 
-    def getRadios(self):
+    def get_radios(self):
         return self.radios.values()
 
-    def getInterfaces(self):
+    def get_interfaces(self):
         return self.interfaces.values()
 
-    def addRadio(self, radio):
+    def add_radio(self, radio):
         self.radios[radio.id] = radio
 
-    def addInterface(self, interface):
+    def add_interface(self, interface):
         self.interfaces[interface.id] = interface
 
     @staticmethod
@@ -261,7 +298,7 @@ class CNMLDevice(object):
         name = get_attribute(d, 'name')
         firmware = get_attribute(d, 'firmware')
         status = get_attribute(d, 'status')
-        status = Status.strToStatus(status)
+        status = Status.str_to_status(status)
         title = get_attribute(d, 'title')
         dtype = get_attribute(d, 'type')
         # ssid = get_attribute(d, 'ssid')
@@ -274,6 +311,24 @@ class CNMLDevice(object):
 
     def __str__(self):
         return 'CNMLDevice({0}): {1}'.format(self.id, self.title)
+
+    # Deprecated methods
+
+    def getRadios(self):
+        warnings.warn("getRadios() is deprecated and will be removed in the future.")
+        return self.get_radios()
+
+    def getInterfaces(self):
+        warnings.warn("getInterfaces() is deprecated and will be removed in the future.")
+        return self.get_interfaces()
+
+    def addRadio(self, radio):
+        warnings.warn("addRadio() is deprecated and will be removed in the future.")
+        self.add_radio(radio)
+
+    def addInterface(self, interface):
+        warnings.warn("addInterface() is deprecated and will be removed in the future.")
+        self.add_interface(interface)
 
 
 class CNMLRadio(object):
@@ -293,10 +348,10 @@ class CNMLRadio(object):
         self.interfaces = dict()
         self.parentDevice = parent
 
-    def getInterfaces(self):
+    def get_interfaces(self):
         return self.interfaces.values()
 
-    def addInterface(self, iface):
+    def add_interfaces(self, iface):
         self.interfaces[iface.id] = iface
 
     @staticmethod
@@ -322,6 +377,16 @@ class CNMLRadio(object):
     def __str__(self):
         return 'CNMLRadio({0}): {1}'.format(self.id, self.ssid)
 
+    # Deprecated methods
+
+    def getInterfaces(self):
+        warnings.warn("getInterfaces() is deprecated and will be removed in the future.")
+        return self.get_interfaces()
+
+    def addInterface(self, iface):
+        warnings.warn("addInterface() is deprecated and will be removed in the future.")
+        self.add_interface(iface)
+
 
 class CNMLInterface(object):
     """
@@ -336,10 +401,10 @@ class CNMLInterface(object):
         self.links = dict()
         self.parentRadio = parent
 
-    def getLinks(self):
+    def get_links(self):
         return self.links.values()
 
-    def addLink(self, link):
+    def add_link(self, link):
         self.links[link.id] = link
 
     @staticmethod
@@ -356,6 +421,16 @@ class CNMLInterface(object):
 
     def __str__(self):
         return 'CNMLInterface({0}): {1} [{2}]'.format(self.id, self.ipv4, self.type)
+
+    # Deprecated methods
+
+    def getLinks(self):
+        warnings.warn("getLinks() is deprecated and will be removed in the future.")
+        return self.get_links()
+
+    def addLink(self, link):
+        warnings.warn("addLink() is deprecated and will be removed in the future.")
+        self.add_link(link)
 
 
 # Note that for two connected nodes there's just one link, that is,
@@ -381,21 +456,21 @@ class CNMLLink(object):
         self.deviceB = None
         self.interfaceB = None
 
-    def getLinkedNodes(self):
+    def get_linked_nodes(self):
         return [self.nodeA, self.nodeB]
 
-    def getLinkedDevices(self):
+    def get_linked_devices(self):
         return [self.deviceA, self.deviceB]
 
-    def getLinkedInterfaces(self):
+    def get_linked_interfaces(self):
         return [self.interfaceA, self.interfaceB]
 
-    def parseLinkB(self, l):
+    def _parse_link_b(self, l):
         self.nodeB = get_attribute(l, 'linked_node_id', int)
         self.deviceB = get_attribute(l, 'linked_device_id', int)
         self.interfaceB = get_attribute(l, 'linked_interface_id', int)
 
-    def setLinkedParameters(self, devs, ifaces, nodes):
+    def _set_linked_parameters(self, devs, ifaces, nodes):
         didA = self.deviceA
         iidA = self.interfaceA
         nidA = self.nodeA
@@ -447,7 +522,7 @@ class CNMLLink(object):
     def parse(l, parent):
         lid = get_attribute(l, 'id', int)
         status = get_attribute(l, 'link_status')
-        status = Status.strToStatus(status)
+        status = Status.str_to_status(status)
         ltype = get_attribute(l, 'link_type')
         ldid = get_attribute(l, 'linked_device_id', int)
         liid = get_attribute(l, 'linked_interface_id', int)
@@ -458,6 +533,28 @@ class CNMLLink(object):
 
     def __str__(self):
         return 'CNMLLink({0}): [{1}<-->{2}] ({3})'.format(self.id, self.interfaceA, self.interfaceB, self.type)
+
+    # Deprecated methods
+
+    def getLinkedNodes(self):
+        warnings.warn("getLinkedNodes() is deprecated and will be removed in the future.")
+        return self.get_linked_nodes()
+
+    def getLinkedDevices(self):
+        warnings.warn("getLinkedDevices() is deprecated and will be removed in the future.")
+        return self.get_linked_devices()
+
+    def getLinkedInterfaces(self):
+        warnings.warn("getLinkedInterfaces() is deprecated and will be removed in the future.")
+        return self.get_linked_interfaces()
+
+    def parseLinkB(self, l):
+        warnings.warn("parseLinkB() is deprecated and will be removed in the future.")
+        self._parse_link_b(l)
+
+    def setLinkedParameters(self, devs, ifaces, nodes):
+        warnings.warn("setLinkedParameters() is deprecated and will be removed in the future.")
+        self._set_linked_parameters(devs, ifaces, nodes)
 
 
 class Status(object):
@@ -478,7 +575,7 @@ class Status(object):
         return (Status.PLANNED, Status.WORKING, Status.TESTING, Status.BUILDING, Status.RESERVED, Status.DROPPED, Status.INACTIVE)
 
     @staticmethod
-    def strToStatus(status):
+    def str_to_status(status):
         if status.lower() == "planned":
             st = Status.PLANNED
         elif status.lower() == "working":
@@ -500,7 +597,7 @@ class Status(object):
         return st
 
     @staticmethod
-    def statusToStr(status):
+    def status_to_str(status):
         if status == Status.PLANNED:
             st = 'Planned'
         elif status == Status.WORKING:
@@ -519,6 +616,18 @@ class Status(object):
             raise ValueError
 
         return st
+
+    # Deprecated methods
+
+    @staticmethod
+    def strToStatus(status):
+        warnings.warn("strToStatus() is deprecated and will be removed in the future.")
+        return Status.str_to_status(status)
+
+    @staticmethod
+    def statusToStr(status):
+        warnings.warn("statusToStr() is deprecated and will be removed in the future.")
+        return Status.status_to_str(status)
 
 
 class CNMLParser(object):
@@ -545,39 +654,35 @@ class CNMLParser(object):
         else:
             self.loaded = False
 
-    def validateDTD(self, tree):
+    def validate(self, tree):
         logger.info('Validating file "%s"...' % self.filename)
 
-        if LXML:
-            return self.validateDTDLxml(tree)
-        else:
-            return self.validateDTDMinidom(tree)
-
-    def validateDTDLxml(self, tree):
         validation = True
-        dtdfile = os.path.join(os.path.dirname(__file__), 'cnml.dtd')
-        try:
-            with open(dtdfile, 'rb') as dtdfp:
-                dtd = etree.DTD(dtdfp)
+        if LXML:
+            dtdfile = os.path.join(os.path.dirname(__file__), 'cnml.dtd')
+            try:
+                with open(dtdfile, 'rb') as dtdfp:
+                    dtd = etree.DTD(dtdfp)
 
-            logger.info('DTD validation: %s' % dtd.validate(tree))
-            errors = dtd.error_log.filter_from_errors()
-            if len(errors) > 0:
-                logger.warning('%d errors found:' % len(errors))
-                logger.warning(errors)
+                logger.info('DTD validation: %s' % dtd.validate(tree))
+                errors = dtd.error_log.filter_from_errors()
+                if len(errors) > 0:
+                    logger.warning('%d errors found:' % len(errors))
+                    logger.warning(errors)
+                    validation = False
+
+            except IOError:
+                logger.error('DTD Validation failed: %s file not found' % dtdfile)
                 validation = False
 
-        except IOError:
-            logger.error('DTD Validation failed: %s file not found' % dtdfile)
+        else:
+            logger.warn('DTD validation is not implemented with Minidom API')
             validation = False
+
         return validation
 
-    def validateDTDMinidom(self, tree):
-        logger.warn('DTD validation is not implemented with Minidom API')
-        return False
-
-    def findNodefromIPv4(self, ipv4):
-        for i in self.getInterfaces():
+    def find_node_from_ipv4(self, ipv4):
+        for i in self.get_interfaces():
             if i.ipv4 == ipv4:
                 radio = i.parentRadio
                 if isinstance(radio, CNMLRadio):
@@ -588,25 +693,25 @@ class CNMLParser(object):
                 return node
         return None
 
-    def getNodes(self):
+    def get_nodes(self):
         return self.nodes.values()
 
-    def getZones(self):
+    def get_zones(self):
         return self.zones.values()
 
-    def getDevices(self):
+    def get_devices(self):
         return self.devices.values()
 
-    def getServices(self):
+    def get_services(self):
         return self.services.values()
 
-    def getRadios(self):
+    def get_radios(self):
         return self.radios.values()
 
-    def getInterfaces(self):
+    def get_interfaces(self):
         return self.ifaces.values()
 
-    def getLinks(self):
+    def get_links(self):
         return self.links.values()
 
     def get_inner_links(self):
@@ -642,7 +747,7 @@ class CNMLParser(object):
 
             newnode = CNMLNode.parse(n)
             self.nodes[newnode.id] = newnode
-            self.zones[zid].addNode(newnode)
+            self.zones[zid].add_node(newnode)
 
             #assert n.parentNode.localName == u'zone'
             #assert(ndevices == len(devicestree))
@@ -656,7 +761,7 @@ class CNMLParser(object):
     def _parse_device(self, d, newnode):
         newdevice = CNMLDevice.parse(d, newnode)
         self.devices[newdevice.id] = newdevice
-        self.nodes[newnode.id].addDevice(newdevice)
+        self.nodes[newnode.id].add_device(newdevice)
 
         # --interfaces--
         # If there's a working service in this device, it has interfaces (and it's not a son of a radio!)
@@ -670,7 +775,7 @@ class CNMLParser(object):
 
         for s in services_tree:
             newservice = self._parse_service(s, newdevice)
-            self.nodes[newnode.id].addService(newservice)
+            self.nodes[newnode.id].add_service(newservice)
 
         # --radios--
         radios_tree = get_elements(d, 'radio')
@@ -681,7 +786,7 @@ class CNMLParser(object):
     def _parse_radio(self, r, newdevice):
         newradio = CNMLRadio.parse(r, newdevice)
         self.radios[(newdevice.id, newradio.id)] = newradio
-        self.devices[newdevice.id].addRadio(newradio)
+        self.devices[newdevice.id].add_radio(newradio)
 
         # --interfaces--
         interfaces_tree = get_elements(r, 'interface')
@@ -692,20 +797,20 @@ class CNMLParser(object):
     def _parse_interface(self, i, newdevice):
         newiface = CNMLInterface.parse(i, newdevice)
         self.ifaces[newiface.id] = newiface
-        self.devices[newdevice.id].addInterface(newiface)
+        self.devices[newdevice.id].add_interface(newiface)
 
         # --links--
         links_tree = get_elements(i, 'link')
 
         for l in links_tree:
             newlink = self._parse_link(l, newiface)
-            self.ifaces[newiface.id].addLink(newlink)
+            self.ifaces[newiface.id].add_link(newlink)
 
     def _parse_link(self, l, newiface):
         lid = get_attribute(l, 'id')
 
         if lid in self.links:
-            self.links[lid].parseLinkB(l)
+            self.links[lid]._parse_link_b(l)
         else:
             newlink = CNMLLink.parse(l, newiface)
             self.links[lid] = newlink
@@ -717,7 +822,7 @@ class CNMLParser(object):
         self.services[sid] = newservice
         return newservice
 
-    def loadLxml(self, validate=True):
+    def _loadLxml(self, validate=True):
         try:
             if not self.url_contents:
                 tree = etree.parse(self.filename)
@@ -731,14 +836,14 @@ class CNMLParser(object):
 
         if validate:
             logger.info('Validating file "%s"...' % self.filename)
-            if not self.validateDTDLxml(tree):
+            if not self.validate(tree):
                 return False
 
         self._parse_zones(tree)
         self._parse_nodes(tree)
         return True
 
-    def loadMinidom(self, validate=True):
+    def _loadMinidom(self, validate=True):
         if not self.url_contents:
             tree = MD.parse(self.filename)
         else:
@@ -747,7 +852,7 @@ class CNMLParser(object):
         if validate:
             logger.info('Validating file "%s"...' % self.filename)
             #Don't check for validation, as minidom doesn't support it
-            self.validateDTDMinidom(tree)
+            self.validate(tree)
 
         self._parse_zones(tree)
         self._parse_nodes(tree)
@@ -775,10 +880,10 @@ class CNMLParser(object):
                 self.url_contents = self.url_contents.decode()
 
         if LXML:
-            loaded = self.loadLxml(validate)
+            loaded = self._loadLxml(validate)
         else:
             try:
-                loaded = self.loadMinidom(validate)
+                loaded = self._loadMinidom(validate)
             except:
                 loaded = False
 
@@ -787,8 +892,8 @@ class CNMLParser(object):
 
             # Replace None by true reference of nodes/devices/interfaces
             # Note that if they belong to a different zone they might not be defined in the CNML file
-            for link in self.getLinks():
-                link.setLinkedParameters(self.devices, self.ifaces, self.nodes)
+            for link in self.get_links():
+                link._set_linked_parameters(self.devices, self.ifaces, self.nodes)
                 if isinstance(link.nodeA, CNMLNode) and isinstance(link.nodeB, CNMLNode):
                     # inner
                     self.innerlinks[link.id] = link
@@ -800,56 +905,134 @@ class CNMLParser(object):
         self.loaded = loaded
         return loaded
 
-    def getNodesFromZone(self, zid):
+    def get_nodes_from_zone(self, zid):
         if not self.loaded:
             self.load()
         return self.zones[zid].nodes.values()
 
-    def getSubzonesFromZone(self, zid):
+    def get_subzones_from_zone(self, zid):
         if not self.loaded:
             self.load()
         return self.zones[zid].subzones.values()
 
-    def getInterface(self, iid):
+    def get_interface(self, iid):
         if not self.loaded:
             self.load()
         return self.ifaces[iid]
 
-    def getNode(self, nid):
+    def get_node(self, nid):
         if not self.loaded:
             self.load()
         return self.nodes[nid]
 
-    def getZone(self, zid):
+    def get_zone(self, zid):
         if not self.loaded:
             self.load()
         return self.zones[zid]
 
-    def getLink(self, lid):
+    def get_link(self, lid):
         if not self.loaded:
             self.load()
         return self.links[lid]
 
-    def getDevice(self, did):
+    def get_device(self, did):
         if not self.loaded:
             self.load()
         return self.devices[did]
 
-    def getZonesNames(self):
+    def get_zones_names(self):
         if not self.loaded:
             self.load()
 
         return [z.title for z in self.getZones()]
 
-    def getTitles(self):
+    def get_titles(self):
         if not self.loaded:
             self.load()
 
         return [n.title for n in self.getNodes()]
 
-    # Filename loaded
-    def getFilename(self):
+    # FIXME: filename not loaded
+    def get_filename(self):
         return self.filename
+
+    # Deprecated methods
+
+    def findNodefromIPv4(self, ipv4):
+        warnings.warn("findNodefromIPv4() is deprecated and will be removed in the future.")
+        return self.find_node_from_ipv4(ipv4)
+
+    def getNodes(self):
+        warnings.warn("getNodes() is deprecated and will be removed in the future.")
+        return self.get_nodes()
+
+    def getZones(self):
+        warnings.warn("getZones() is deprecated and will be removed in the future.")
+        return self.get_zones()
+
+    def getDevices(self):
+        warnings.warn("getDevices() is deprecated and will be removed in the future.")
+        return self.get_devices()
+
+    def getServices(self):
+        warnings.warn("getServices() is deprecated and will be removed in the future.")
+        return self.get_services()
+
+    def getRadios(self):
+        warnings.warn("getRadios() is deprecated and will be removed in the future.")
+        return self.get_radios()
+
+    def getInterfaces(self):
+        warnings.warn("getInterfaces() is deprecated and will be removed in the future.")
+        return self.get_interfaces()
+
+    def getLinks(self):
+        warnings.warn("getLinks() is deprecated and will be removed in the future.")
+        return self.get_links()
+
+    def getNodesFromZone(self, zid):
+        warnings.warn("getNodesFromZone() is deprecated and will be removed in the future.")
+        return self.get_nodes_from_zone(zid)
+
+    def getSubzonesFromZone(self, zid):
+        warnings.warn("getSubzonesFromZone() is deprecated and will be removed in the future.")
+        return self.get_subzones_from_zone(zid)
+
+    def getInterface(self, iid):
+        warnings.warn("getInterface() is deprecated and will be removed in the future.")
+        return self.get_interface(iid)
+
+    def getNode(self, nid):
+        warnings.warn("getNode() is deprecated and will be removed in the future.")
+        return self.get_node(nid)
+
+    def getZone(self, zid):
+        warnings.warn("getZone() is deprecated and will be removed in the future.")
+        return self.get_zone(zid)
+
+    def getLink(self, lid):
+        warnings.warn("getLink() is deprecated and will be removed in the future.")
+        return self.get_link(lid)
+
+    def getDevice(self, did):
+        warnings.warn("getDevice() is deprecated and will be removed in the future.")
+        return self.get_device(did)
+
+    def getZonesNames(self):
+        warnings.warn("getZonesNames() is deprecated and will be removed in the future.")
+        return self.get_zones_names()
+
+    def getTitles(self):
+        warnings.warn("getTitles() is deprecated and will be removed in the future.")
+        return self.get_titles()
+
+    def getFilename(self):
+        warnings.warn("getFilename() is deprecated and will be removed in the future.")
+        return self.get_filename()
+
+    def validateDTD(self, tree):
+        warnings.warn("validateDTD() is deprecated and will be removed in the future.")
+        return self.validate(tree)
 
     def __str__(self):
         return 'CNMLParser: {1}'.format(self.filename)

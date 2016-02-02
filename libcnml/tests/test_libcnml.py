@@ -118,39 +118,39 @@ class LibcnmlTestCase(unittest.TestCase):
         self.parser = libcnml.CNMLParser(filename)
 
     def test_findNodefromIPv4(self):
-        node = self.parser.findNodefromIPv4(self.data['ip']['address'])
+        node = self.parser.find_node_from_ipv4(self.data['ip']['address'])
         self.assertTrue(node is not None)
         self.assertEqual(node.title, self.data['ip']['title'])
 
     def test_getNodes(self):
-        nodes = self.parser.getNodes()
+        nodes = self.parser.get_nodes()
         self.assertEqual(len(nodes), self.data['nodes'])
 
     def test_getZones(self):
-        zones = self.parser.getZones()
+        zones = self.parser.get_zones()
         self.assertEqual(len(zones), self.data['zones'])
 
     def test_getDevices(self):
-        devices = self.parser.getDevices()
+        devices = self.parser.get_devices()
         self.assertEqual(len(devices), self.data['devices'])
 
     def test_getServices(self):
-        services = self.parser.getServices()
+        services = self.parser.get_services()
         self.assertEqual(len(services), self.data['services'])
 
     def test_getRadios(self):
-        radios = self.parser.getRadios()
+        radios = self.parser.get_radios()
         self.assertEqual(len(radios), self.data['radios'])
 
     def test_getInterfaces(self):
-        interfaces = self.parser.getInterfaces()
+        interfaces = self.parser.get_interfaces()
         for iface in interfaces:
             self.assertIn(iface.id, self.data['interfaces'])
 
         self.assertEqual(len(interfaces), len(self.data['interfaces']))
 
     def test_getLinks(self):
-        links = self.parser.getLinks()
+        links = self.parser.get_links()
         for link in links:
             self.assertIn(link.id, self.data['links'])
         self.assertEqual(len(links), len(self.data['links']))
@@ -180,20 +180,20 @@ class LibcnmlNodeAttributesTestCase(LibcnmlTestCase):
         self.parser = libcnml.CNMLParser(filename)
 
     def test_node_title(self):
-        node = self.parser.getNode(48441)
+        node = self.parser.get_node(48441)
         self.assertEqual(node.title, 'ANDBerria38')
 
     def test_node_antenna_elevation(self):
-        node = self.parser.getNode(48441)
+        node = self.parser.get_node(48441)
         self.assertEqual(node.antenna_elevation, 12)
 
     def test_node_created(self):
-        node = self.parser.getNode(48441)
+        node = self.parser.get_node(48441)
         self.assertIsInstance(node.created, datetime.datetime)
         self.assertEqual(node.created.strftime('%Y-%m-%d %H:%M'), '2012-05-23 06:47')
 
     def test_node_updated(self):
-        node = self.parser.getNode(48441)
+        node = self.parser.get_node(48441)
         self.assertIsInstance(node.updated, datetime.datetime)
         self.assertEqual(node.updated.strftime('%Y-%m-%d %H:%M'), '2014-11-20 11:35')
 
