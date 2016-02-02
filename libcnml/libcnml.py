@@ -390,7 +390,7 @@ class CNMLRadio(object):
     def get_interfaces(self):
         return self.interfaces.values()
 
-    def add_interfaces(self, iface):
+    def add_interface(self, iface):
         self.interfaces[iface.id] = iface
 
     @staticmethod
@@ -726,12 +726,12 @@ class CNMLParser(object):
     def find_node_from_ipv4(self, ipv4):
         for i in self.get_interfaces():
             if i.ipv4 == ipv4:
-                radio = i.parentRadio
-                if isinstance(radio, CNMLRadio):
-                    node = radio.parentDevice.parentNode
+                parent = i.parent
+                if isinstance(parent, CNMLRadio):
+                    node = parent.parentDevice.parentNode
                 else:
                     # parent of radio is already a device
-                    node = radio.parentNode
+                    node = parent.parentNode
                 return node
         return None
 
@@ -895,12 +895,18 @@ class CNMLParser(object):
         interfaces_tree = get_elements(r, 'interface')
 
         for i in interfaces_tree:
-            self._parse_interface(i, newdevice)
+            self._parse_interface(i, newradio)
 
-    def _parse_interface(self, i, newdevice):
-        newiface = CNMLInterface.parse(i, newdevice)
+    def _parse_interface(self, i, parent):
+        newiface = CNMLInterface.parse(i, parent)
         self.ifaces[newiface.id] = newiface
-        self.devices[newdevice.id].add_interface(newiface)
+
+        if isinstance(parent, CNMLDevice):
+            self.devices[parent.id].add_interface(newiface)
+        elif isinstance(parent, CNMLRadio):
+            parent.add_interface(newiface)
+        else:
+            raise ValueError
 
         # --links--
         links_tree = get_elements(i, 'link')
