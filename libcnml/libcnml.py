@@ -946,6 +946,11 @@ class CNMLParser(object):
             self.load()
         return self.zones[zid].subzones.values()
 
+    def get_service(self, sid):
+        if not self.loaded:
+            self.load()
+        return self.services[sid]
+
     def get_interface(self, iid):
         if not self.loaded:
             self.load()
