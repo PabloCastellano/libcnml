@@ -243,25 +243,33 @@ class CNMLService(object):
     A service has a title and a status, which is the most useful for the end-users
     CNML can also provide the date when the service was created
     """
-    def __init__(self, sid, title, stype, status, created, parent):
+    def __init__(self, sid, title, stype, status, created, updated, parent):
         self.id = sid
         self.title = title
         self.type = stype
         self.status = status
-        self.created = created
+        self.created = datetime.datetime.strptime(created, '%Y%m%d %H%M')
+        if updated:
+            self.updated = datetime.datetime.strptime(updated, '%Y%m%d %H%M')
+        else:
+            self.updated = None
         self.parentNode = parent
 
     @staticmethod
     def parse(s, parent):
         sid = get_attribute(s, 'id', int)
         title = get_attribute(s, 'title')
-        stype = get_attribute(s, 'type')
+        type = get_attribute(s, 'type')
         status = get_attribute(s, 'status')
         status = Status.str_to_status(status)
         created = get_attribute(s, 'created')
+        updated = get_attribute(s, 'updated')
 
-        newservice = CNMLService(sid, title, stype, status, created, parent)
+        newservice = CNMLService(sid, title, type, status, created, updated, parent)
         return newservice
+
+    def __str__(self):
+        return 'CNMLService({}): {} ({})'.format(self.id, self.title, self.type)
 
 
 class CNMLDevice(object):
@@ -818,9 +826,8 @@ class CNMLParser(object):
         return self.ifaces[newiface.id]
 
     def _parse_service(self, s, newdevice):
-        sid = get_attribute(s, 'id')
         newservice = CNMLService.parse(s, newdevice)
-        self.services[sid] = newservice
+        self.services[newservice.id] = newservice
         return newservice
 
     def _get_cnml_type(self, tree):

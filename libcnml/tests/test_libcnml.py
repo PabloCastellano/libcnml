@@ -224,6 +224,7 @@ class Zone2525TestCase(LibcnmlTestCase):
     cnml_file = 'data/2525.cnml'
     data = DATA[2525]
 
+
 class Node56604TestCase(LibcnmlTestCase):
     cnml_file = 'data/56604_node.cnml'
     data = DATA[56604]
