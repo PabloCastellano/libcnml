@@ -726,8 +726,7 @@ class CNMLParser(object):
 
         except XMLSyntaxError as e:
             logger.error('Error reading CNML file: %s' % e)
-            logger.error('The file might be corrupted. Please remove it manually:')
-            logger.error('rm %s' % self.filename)
+            logger.error('The file might be corrupted.')
             return False
 
         if validate:
