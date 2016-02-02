@@ -219,8 +219,18 @@ class Zone55284TestCase(LibcnmlTestCase):
     cnml_file = 'data/55284.cnml'
     data = DATA[55284]
 
-    def test_services(self):
+    def test_get_service(self):
         service = self.parser.get_service(80470)
+        self.assertEqual(service.id, 80470)
+        self.assertEqual(service.title, 'TOLO28Kanala-proxy')
+        self.assertEqual(service.type, 'Proxy')
+        self.assertEqual(service.status, libcnml.Status.BUILDING)
+        self.assertEqual(service.created, datetime.datetime(2015, 8, 3, 6, 56))
+        self.assertEqual(service.updated, datetime.datetime(2015, 8, 3, 7, 0))
+
+        device = self.parser.get_device(78855)
+        service = device.get_service(80470)
+
         self.assertEqual(service.id, 80470)
         self.assertEqual(service.title, 'TOLO28Kanala-proxy')
         self.assertEqual(service.type, 'Proxy')
@@ -237,6 +247,7 @@ class Zone2525TestCase(LibcnmlTestCase):
 class Node56604TestCase(LibcnmlTestCase):
     cnml_file = 'data/56604_node.cnml'
     data = DATA[56604]
+
 
 if __name__ == '__main__':
     unittest.main()

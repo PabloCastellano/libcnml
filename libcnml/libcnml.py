@@ -283,6 +283,7 @@ class CNMLDevice(object):
         self.status = status
         self.title = title
         self.type = dtype
+        self.services = dict()
         self.radios = dict()
         self.interfaces = dict()
         self.parentNode = parent
@@ -294,11 +295,20 @@ class CNMLDevice(object):
     def get_interfaces(self):
         return self.interfaces.values()
 
+    def get_service(self, sid):
+        return self.services[sid]
+
+    def get_services(self):
+        return self.services.values()
+
     def add_radio(self, radio):
         self.radios[radio.id] = radio
 
     def add_interface(self, interface):
         self.interfaces[interface.id] = interface
+
+    def add_service(self, service):
+        self.services[service.id] = service
 
     @staticmethod
     def parse(d, parent):
@@ -785,6 +795,7 @@ class CNMLParser(object):
         for s in services_tree:
             newservice = self._parse_service(s, newdevice)
             self.nodes[newnode.id].add_service(newservice)
+            self.devices[newdevice.id].add_service(newservice)
 
         # --radios--
         radios_tree = get_elements(d, 'radio')
