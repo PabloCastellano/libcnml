@@ -739,15 +739,16 @@ class CNMLParser(object):
             if zid != self.rootzone and zparentid is not None:
                 self.zones[zparentid].addSubzone(newzone)
 
-    def _parse_nodes(self, tree):
+    def _parse_nodes(self, tree, add_zones=True):
         nodes_tree = get_elements(tree, 'node', dot=True)
 
         for n in nodes_tree:
-            zid = get_attribute(n, 'id', int, use_parent=True)
-
             newnode = CNMLNode.parse(n)
             self.nodes[newnode.id] = newnode
-            self.zones[zid].add_node(newnode)
+
+            if add_zones:
+                zid = get_attribute(n, 'id', int, use_parent=True)
+                self.zones[zid].add_node(newnode)
 
             #assert n.parentNode.localName == u'zone'
             #assert(ndevices == len(devicestree))
@@ -822,6 +823,21 @@ class CNMLParser(object):
         self.services[sid] = newservice
         return newservice
 
+    def _get_cnml_type(self, tree):
+        klass = get_elements(tree, 'class')
+        if LXML:
+            klass = next(klass)
+        else:
+            klass = klass[0]
+
+        if get_attribute(klass, 'network_description'):
+            self.cnml_type = 'detail'
+        else:
+            if get_attribute(klass, 'node_description'):
+                self.cnml_type = 'node'
+            else:
+                raise ValueError
+
     def _loadLxml(self, validate=True):
         try:
             if not self.url_contents:
@@ -839,8 +855,12 @@ class CNMLParser(object):
             if not self.validate(tree):
                 return False
 
-        self._parse_zones(tree)
-        self._parse_nodes(tree)
+        self._get_cnml_type(tree)
+        add_zones = self.cnml_type == 'detail'
+
+        if add_zones:
+            self._parse_zones(tree)
+        self._parse_nodes(tree, add_zones=add_zones)
         return True
 
     def _loadMinidom(self, validate=True):
@@ -854,8 +874,12 @@ class CNMLParser(object):
             #Don't check for validation, as minidom doesn't support it
             self.validate(tree)
 
-        self._parse_zones(tree)
-        self._parse_nodes(tree)
+        self._get_cnml_type(tree)
+        add_zones = self.cnml_type == 'detail'
+
+        if add_zones:
+            self._parse_zones(tree)
+        self._parse_nodes(tree, add_zones=add_zones)
 
         # Fix: return False
         return True
@@ -880,10 +904,10 @@ class CNMLParser(object):
                 self.url_contents = self.url_contents.decode()
 
         if LXML:
-            loaded = self._loadLxml(validate)
+            loaded = self._loadLxml(validate=validate)
         else:
             try:
-                loaded = self._loadMinidom(validate)
+                loaded = self._loadMinidom(validate=validate)
             except:
                 loaded = False
 

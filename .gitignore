@@ -4,4 +4,5 @@
 /libcnml.egg-info
 
 *.pyc
+*.swp
 *~

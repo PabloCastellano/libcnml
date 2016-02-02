@@ -74,6 +74,23 @@ DATA = {
             'address': '10.138.53.101',
             'title': 'CanetCuba',
         },
+    },
+    56604: {
+        'zones': 0,
+        'nodes': 1,
+        'devices': 8,
+        'services': 0,
+        'radios': 6,
+        'interfaces': (
+            101234, 101660, 106637, 106638, 106640, 111332, 125851, 129608, 142178, 98582
+        ),
+        'links': (
+            125220, 73466, 75203, 80555, 81054
+        ),
+        'ip': {
+            'address': '10.1.66.97',
+            'title': 'BCNUPFp9',
+        },
     }
 }
 
@@ -206,6 +223,10 @@ class Zone55284TestCase(LibcnmlTestCase):
 class Zone2525TestCase(LibcnmlTestCase):
     cnml_file = 'data/2525.cnml'
     data = DATA[2525]
+
+class Node56604TestCase(LibcnmlTestCase):
+    cnml_file = 'data/56604_node.cnml'
+    data = DATA[56604]
 
 if __name__ == '__main__':
     unittest.main()

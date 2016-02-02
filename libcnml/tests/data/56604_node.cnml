@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<cnml version="0.1" server_id="1" server_url="http://guifi.net" generated="20160202 1216">
+    <class node_description="56604" mapping="y"/>
+    <node id="56604" title="BCNUPFp9" lat="41.403605" lon="2.193709" antenna_elevation="40" status="Working" created="20130226 0538" updated="20150109 1249" access_points="2" devices="8" links="2">
+        <device id="51457" mainipv4="10.1.66.97" title="BCNUPFp9RoofRd1" type="radio" status="Working" created="20130311 0121" updated="20150109 1249" firmware="qMp" name="AirMaxM5 Rocket/Nano/Loco">
+            <radio id="0" device_id="51457" ssid="SantMartiBCNPFRd1MESH" mode="mesh" protocol="802.11n" channel="5700" antenna_angle="90" antenna_gain="14" clients_accepted="No" snmp_name="br-lan"/>
+            <interface id="98582" type="Lan" mac="02:CA:FF:EE:BA:BE" ipv4="10.1.66.97" mask="255.255.255.224"/>
+        </device>
+        <device id="75928" mainipv4="10.139.173.67" title="BCNUPFp9Srvr1" type="server" status="Testing" created="20150504 1036" updated="20150506 1122">
+            <interface id="142178" type="Lan" mac="00:00:00:00:00:00" ipv4="10.139.173.67" mask="255.255.255.224">
+                <link id="125220" linked_device_id="65328" linked_node_id="56604" linked_interface_id="106637" link_type="cable" link_status="Building"/>
+            </interface>
+        </device>
+        <device id="61389" mainipv4="10.139.173.97" title="BCNUPFp9AlixNeTS" type="radio" status="Building" created="20140113 0553" updated="20141112 0332" firmware="qMp" name="AirMaxM5 Rocket/Nano/Loco">&amp;nbsp;
+            <radio id="0" device_id="61389" ssid="P9SFBCNPFRd2MESH" mode="mesh" protocol="802.11b" antenna_gain="14" clients_accepted="No" snmp_name="br-lan"/>
+            <interface id="101234" type="Lan" mac="00:0D:B9:17:9D:36" ipv4="10.139.173.97" mask="255.255.255.224"/>
+        </device>
+        <device id="61709" mainipv4="10.1.67.97" title="BCNUPFp9RoofRd2" type="radio" status="Working" created="20140123 0434" updated="20150109 1249" firmware="qMp" name="AirMaxM5 Rocket/Nano/Loco">
+            <radio id="0" device_id="61709" ssid="P9SFRfRd2MESH" mode="mesh" protocol="802.11n" channel="5700" antenna_gain="14" clients_accepted="No" snmp_name="br-lan"/>
+            <interface id="101660" type="Lan" mac="24:A4:3C:A0:42:28" ipv4="10.1.67.97" mask="255.255.255.224">
+                <link id="75203" linked_device_id="62460" linked_node_id="56604" linked_interface_id="111332" link_type="cable" link_status="Testing"/>
+            </interface>
+        </device>
+        <device id="62460" mainipv4="10.1.67.99" title="BCNRocBoronat131" type="confine" status="Working" created="20140211 0724" updated="20150109 1249" snmp_index="4">
+            <interface id="111332" type="Lan" mac="00:00:00:00:00:00" ipv4="10.1.67.99" mask="255.255.255.224">
+                <link id="75203" linked_device_id="61709" linked_node_id="56604" linked_interface_id="101660" link_type="cable" link_status="Testing"/>
+            </interface>
+        </device>
+        <device id="65328" mainipv4="10.139.173.65" title="BCNUPFp9RB2011" type="radio" status="Working" created="20140513 1035" updated="20150109 1249" firmware="RouterOSv6.x" name="Routerboard 2011">
+            <radio id="0" device_id="65328" ssid="Tunel-p2p-BCNRembrandt" mode="ap" protocol="legacy" antenna_gain="14" clients_accepted="No" snmp_name="wlan1">
+                <interface id="106637" type="wLan/Lan" mac="BE:EF:CA:FE:BA:BE" ipv4="10.139.173.65" mask="255.255.255.224"/>
+                <interface id="129608" type="wds/p2p" mac="BE:EF:CA:FE:BA:BE" ipv4="172.25.61.22" mask="255.255.255.252">
+                    <link id="81054" linked_device_id="57824" linked_node_id="49480" linked_interface_id="129609" link_type="wds" link_status="Testing"/>
+                </interface>
+            </radio>
+            <interface id="106637" type="wLan/Lan" mac="BE:EF:CA:FE:BA:BE" ipv4="10.139.173.65" mask="255.255.255.224">
+                <link id="125220" linked_device_id="75928" linked_node_id="56604" linked_interface_id="142178" link_type="cable" link_status="Building"/>
+                <link id="73466" linked_device_id="65329" linked_node_id="56604" linked_interface_id="106640" link_type="cable" link_status="Working"/>
+            </interface>
+        </device>
+        <device id="65329" mainipv4="10.139.173.66" title="BCNUPFp9NanoBeam" type="radio" status="Working" created="20140513 1042" updated="20150109 1249" firmware="AirOsv5.x" name="AirMaxM5 Bullet/PwBrg/AirGrd/NanoBr">
+            <radio id="0" device_id="65329" ssid="DrTrueta183-UPFp9" mode="ap" protocol="802.11n" channel="5520" antenna_angle="120" antenna_gain="14" clients_accepted="No" snmp_name="ath0">
+                <interface id="106638" type="wds/p2p" mac="24:A4:3C:80:F9:FA" ipv4="172.25.41.178" mask="255.255.255.252">
+                    <link id="80555" linked_device_id="71611" linked_node_id="74188" linked_interface_id="128002" link_type="wds" link_status="Working"/>
+                </interface>
+            </radio>
+            <interface id="106638" type="wds/p2p" mac="24:A4:3C:80:F9:FA" ipv4="172.25.41.178" mask="255.255.255.252"/>
+            <interface id="106640" type="Lan" mac="24:A4:3C:81:F9:FA" ipv4="10.139.173.66" mask="255.255.255.224">
+                <link id="73466" linked_device_id="65328" linked_node_id="56604" linked_interface_id="106637" link_type="cable" link_status="Working"/>
+            </interface>
+        </device>
+        <device id="71050" mainipv4="10.1.69.129" title="BCNUPFp9AlixHackLab" type="radio" status="Working" created="20141112 0334" updated="20150216 1140" firmware="qMp" name="AirMaxM5 Rocket/Nano/Loco">
+            <radio id="0" device_id="71050" ssid="P9SFBCNPFp9lxHckLbMESH" mode="mesh" protocol="802.11b" antenna_gain="14" clients_accepted="No" snmp_name="br-lan"/>
+            <interface id="125851" type="Lan" mac="00:00:00:00:00:00" ipv4="10.1.69.129" mask="255.255.255.128"/>
+        </device>
+    </node>
+</cnml>
