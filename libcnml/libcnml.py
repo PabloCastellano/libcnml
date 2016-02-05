@@ -184,6 +184,7 @@ class CNMLNode(object):
         self.status = status
         self.devices = dict()
         self.services = dict()
+        self.zone = None
 
     def get_device(self, did):
         return self.devices[did]
@@ -850,6 +851,7 @@ class CNMLParser(object):
             if add_zones:
                 zid = get_attribute(n, 'id', int, use_parent=True)
                 self.zones[zid].add_node(newnode)
+                self.nodes[newnode.id].zone = self.zones[zid]
 
             #assert n.parentNode.localName == u'zone'
             #assert(ndevices == len(devicestree))
