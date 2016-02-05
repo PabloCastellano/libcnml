@@ -372,10 +372,11 @@ class CNMLRadio(object):
     """
     This CNMLRadio class represents a radio of a device in the network
     """
-    def __init__(self, rid, protocol, snmp_name, ssid, mode, gain, angle, channel, clients, parent):
+    def __init__(self, rid, protocol, snmp_name, snmp_index, ssid, mode, gain, angle, channel, clients, parent):
         self.id = rid
         self.protocol = protocol
         self.snmp_name = snmp_name
+        self.snmp_index = snmp_index
         self.ssid = ssid
         self.mode = mode
         self.antenna_gain = gain
@@ -400,6 +401,7 @@ class CNMLRadio(object):
         rid = get_attribute(r, 'id', int)
         protocol = get_attribute(r, 'protocol')
         snmp_name = get_attribute(r, 'snmp_name')
+        snmp_index = get_attribute(r, 'snmp_index')
         ssid = get_attribute(r, 'ssid')
         mode = get_attribute(r, 'mode')
         antenna_gain = get_attribute(r, 'antenna_gain')
@@ -411,7 +413,7 @@ class CNMLRadio(object):
         #falta atributo interfaces="2"
         #sobra atributo device_id
 
-        newradio = CNMLRadio(rid, protocol, snmp_name, ssid, mode, antenna_gain, antenna_angle, channel, clients, parent)
+        newradio = CNMLRadio(rid, protocol, snmp_name, snmp_index, ssid, mode, antenna_gain, antenna_angle, channel, clients, parent)
         return newradio
 
     def __str__(self):
