@@ -1,5 +1,7 @@
-Changelog
-=========
+Release Notes / Changelog
+=========================
+
+For the most accurate detail, we recommend you review the git log.
 
 Version 1.0 [unreleased]
 ------------------------
