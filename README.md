@@ -39,6 +39,9 @@ Optionally you can also install lxml (read the note below):
     sudo apt-get install libxml2-dev libxslt1-dev
     pip install lxml
 
+
+libcnml is also available in the Fedora/RHEL/CentOS/Scientific Linux [repositories](https://admin.fedoraproject.org/pkgdb/package/rpms/python-libcnml/).
+
 lxml
 ====
 
