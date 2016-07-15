@@ -812,13 +812,13 @@ class CNMLParser(object):
         if not self.loaded:
             self.load()
 
-        return [z.title for z in self.getZones()]
+        return [z.title for z in self.get_zones()]
 
     def get_titles(self):
         if not self.loaded:
             self.load()
 
-        return [n.title for n in self.getNodes()]
+        return [n.title for n in self.get_nodes()]
 
     # FIXME: filename not loaded
     def get_filename(self):

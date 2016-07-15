@@ -134,39 +134,39 @@ class LibcnmlTestCase(unittest.TestCase):
         )
         self.parser = libcnml.CNMLParser(filename)
 
-    def test_findNodefromIPv4(self):
+    def test_find_node_from_ipv4(self):
         node = self.parser.find_node_from_ipv4(self.data['ip']['address'])
         self.assertTrue(node is not None)
         self.assertEqual(node.title, self.data['ip']['title'])
 
-    def test_getNodes(self):
+    def test_get_nodes(self):
         nodes = self.parser.get_nodes()
         self.assertEqual(len(nodes), self.data['nodes'])
 
-    def test_getZones(self):
+    def test_get_zones(self):
         zones = self.parser.get_zones()
         self.assertEqual(len(zones), self.data['zones'])
 
-    def test_getDevices(self):
+    def test_get_devices(self):
         devices = self.parser.get_devices()
         self.assertEqual(len(devices), self.data['devices'])
 
-    def test_getServices(self):
+    def test_get_services(self):
         services = self.parser.get_services()
         self.assertEqual(len(services), self.data['services'])
 
-    def test_getRadios(self):
+    def test_get_radios(self):
         radios = self.parser.get_radios()
         self.assertEqual(len(radios), self.data['radios'])
 
-    def test_getInterfaces(self):
+    def test_get_interfaces(self):
         interfaces = self.parser.get_interfaces()
         for iface in interfaces:
             self.assertIn(iface.id, self.data['interfaces'])
 
         self.assertEqual(len(interfaces), len(self.data['interfaces']))
 
-    def test_getLinks(self):
+    def test_get_links(self):
         links = self.parser.get_links()
         for link in links:
             self.assertIn(link.id, self.data['links'])
