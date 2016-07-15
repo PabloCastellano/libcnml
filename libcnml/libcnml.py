@@ -679,7 +679,7 @@ class CNMLParser(object):
     """
     This CNMLParser class is used to parse a CNML file and build the data structure
     """
-    def __init__(self, filename, lazy=False):
+    def __init__(self, filename, lazy=False, validate=True):
         self.filename = filename
         self.rootzone = 0
 
@@ -694,7 +694,7 @@ class CNMLParser(object):
         self.outerlinks = None
 
         if not lazy:
-            self.loaded = self.load()
+            self.loaded = self.load(validate=validate)
             # TODO: raise exception if load failed so that the user interface can show a messagebox
         else:
             self.loaded = False
