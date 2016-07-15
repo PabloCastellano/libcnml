@@ -289,7 +289,7 @@ class CNMLDevice(object):
     """
     This CNMLDevice class represents a device of a node in the network
     """
-    def __init__(self, did, name, firmware, status, title, dtype, parent):
+    def __init__(self, did, name, firmware, status, title, dtype, parent, mainipv4):
         self.id = did
         self.name = name
         self.firmware = firmware
@@ -300,6 +300,7 @@ class CNMLDevice(object):
         self.radios = dict()
         self.interfaces = dict()
         self.parentNode = parent
+        self.mainipv4 = mainipv4
         # self.ssid = ssid
 
     def get_radio(self, rid):
@@ -338,12 +339,13 @@ class CNMLDevice(object):
         status = Status.str_to_status(status)
         title = get_attribute(d, 'title')
         dtype = get_attribute(d, 'type')
+        mainipv4 = get_attribute(d, 'mainipv4')
         # ssid = get_attribute(d, 'ssid')
         #nlinks = get_attribute(d, 'links) or 0
         #nlinks = int(nlinks)
         #por qué no tiene un atributo radios="2" en lugar de links="2"??
 
-        newdevice = CNMLDevice(did, name, firmware, status, title, dtype, parent)
+        newdevice = CNMLDevice(did, name, firmware, status, title, dtype, parent, mainipv4)
         return newdevice
 
     def __str__(self):
