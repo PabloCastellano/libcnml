@@ -8,6 +8,22 @@ Version 1.0 [unreleased]
 
 - TODO
 
+Version 0.9.5 [2016-07-15]
+--------------------------
+
+- FIX: bug when calling CNMLParser with lazy=True and validate=False
+- FIX: Assign correctly interfaces that are children of radios (issue #13)
+- NEW: Added support for CNML type "node"
+- NEW: Manage new attribute "mainipv4" in CNML and DTD
+- NEW: Parse new attributes: CNMLNode.zone, CNMLRadio.snmp_index, CNMLDevice.mainipv4
+- NEW: Added a bunch of getters to CNMLParser, CNMLZone, CNMLNode and more.
+- IMP: Add CNMLService to its own CNMLDevice (issue #8)
+- IMP: Expose validate on CNMLParser.__init__
+- IMP: Renamed CNMLInterface.parentRadio to parent since it can be a CNMLDevice too
+- IMP: CNMLService: attributes created and updated (added) are datetime objects
+- IMP: Renamed functions to more Pythonic names (+ added deprecation warnings)
+- IMP: Important code cleaning
+
 Version 0.9.4 [2016-01-27]
 --------------------------
 
@@ -24,7 +40,7 @@ Version 0.9.2 [2015-05-11]
 
 - CNMLLink: status is now libcnml.Status
 - Removed NEWS (replaced by CHANGES.rst)
-- Added README.md to MANIFEST.in. It was preventing the egg package from being installed.
+- Added README.md to MANIFEST.in. It was preventing the egg package from being installed
 
 Version 0.9.1 [2015-05-10]
 --------------------------
