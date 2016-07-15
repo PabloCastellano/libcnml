@@ -841,7 +841,7 @@ class CNMLParser(object):
             zparentid = newzone.parentzone
 
             if zid != self.rootzone and zparentid is not None:
-                self.zones[zparentid].addSubzone(newzone)
+                self.zones[zparentid].add_subzone(newzone)
 
     def _parse_nodes(self, tree, add_zones=True):
         nodes_tree = get_elements(tree, 'node', dot=True)
