@@ -26,10 +26,14 @@ setup(
     author_email='pablo@anche.no',
     url='https://github.com/PabloCastellano/libcnml/',
     download_url='https://github.com/PabloCastellano/libcnml/archive/master.zip',
-    keywords = ['cnml', 'free networks', 'guifi.net'],
+    keywords=['cnml', 'free networks', 'guifi.net'],
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 2',
+    ],
     license=__license__,
     include_package_data=True,
     zip_safe=False,
     install_requires=['six'],
-    test_suite = "libcnml.tests.test_libcnml"
+    test_suite="libcnml.tests.test_libcnml"
 )
