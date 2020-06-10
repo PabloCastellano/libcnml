@@ -19,7 +19,6 @@
 
 from __future__ import absolute_import
 import os
-import six
 import datetime
 import warnings
 
@@ -1010,10 +1009,10 @@ class CNMLParser(object):
         self.url_contents = None
 
         # if URL has been passed, get the contents
-        if isinstance(self.filename, six.string_types) and self.filename.startswith('http'):
+        if isinstance(self.filename, str) and self.filename.startswith('http'):
             self.url_contents = request.urlopen(self.filename).read()
             # decode response if needed
-            if not isinstance(self.url_contents, six.string_types):
+            if not isinstance(self.url_contents, str):
                 self.url_contents = self.url_contents.decode()
 
         if LXML:

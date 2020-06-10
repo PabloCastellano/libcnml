@@ -34,6 +34,5 @@ setup(
     license=__license__,
     include_package_data=True,
     zip_safe=False,
-    install_requires=['six'],
     test_suite="libcnml.tests.test_libcnml"
 )
