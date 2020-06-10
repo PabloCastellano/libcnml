@@ -20,7 +20,6 @@ CNML is a specification based on XML, which makes it easily extendible and reada
 Some advantages of using CNML is that it allows to uncouple different functionalities independently of the web application used to show the data, reducing dependence from it and its internal tables of the database.
 
 You can read more about it on:
-- http://cnml.info
 - http://en.wiki.guifi.net/wiki/CNML
 
 Install
